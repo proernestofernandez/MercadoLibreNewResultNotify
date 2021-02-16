@@ -1,7 +1,7 @@
 {
-  "name": "node-js-ernesdary-backend",
+  "name": "ml-notify-backend",
   "version": "1.0.0",
-  "description": "Nuestro Backend",
+  "description": "Backend para notificaciones de Mercado Libre.",
   "engines": {
     "node": "10.x"
   },
@@ -10,12 +10,13 @@
     "start": "node app.js",
     "test": "node test.js"
   },
-  "author": "ErnesYDary",
+  "author": "ProErnestoFernandez",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.5.6",
     "express": "^4.16.3",
+    "joi": "^17.3.0",
     "method-override": "^2.1.2",
     "mongoose": "^5.2.16"
   }
