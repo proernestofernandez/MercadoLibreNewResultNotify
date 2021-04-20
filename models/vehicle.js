@@ -10,4 +10,4 @@ var vehiculoSchema = new Schema({
   item: { type: Schema.ObjectId, ref: "item" } 
 });
 
-module.exports = mongoose.model('vehiculo', vehiculoSchema);
+module.exports = mongoose.model('vehicle', vehiculoSchema);

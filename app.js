@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 
-var Usuario = require("./models/Usuario");
+var Usuario = require("./models/user");
 var Query = require("./models/Query");
 //var Query_Croned = require("./croned/Query_Croned");
 var mongoose = require('mongoose');
@@ -22,15 +22,15 @@ mongoose.connect(mongoDB_path, function(err, res) {
 
 //A CONTINUACION SE CARGARAN LOS ENDPOINT
 const express = require('express');
-const usuario_middleware = require('./services/Usuarios.js');
-const query_middleware = require('./services/Querys.js');
+const usuario_middleware = require('./services/user_service.js');
+const query_middleware = require('./services/query_service.js');
 const port = process.env.PORT || 3000;
 
 express()
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
-    .use('/usuario', usuario_middleware ({ pepe:'Hola usuario' }))
-    .use('/query', query_middleware ({ ppe:'Hory' }))
+    //.use('/usuario', usuario_middleware ({ pepe:'Hola usuario' }))
+    //.use('/query', query_middleware ({ ppe:'Hory' }))
     .listen(port, ()=> console.log(`ESCUCHANDO EN EL PUERTO ${port}...`));
 
 

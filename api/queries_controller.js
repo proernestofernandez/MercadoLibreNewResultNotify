@@ -32,5 +32,14 @@ router.post('', async (req, res,next) => {
     })        
 });
 
+//Execute query
+router.put('', async (req, res,next) => {
+    const query_param = req.body
+    queries_service.execute_query(query_param, function(err, saved_query) {
+        if (err) res.send(err)
+        res.send(saved_query);    
+    })        
+});
+
 
 module.exports = router;

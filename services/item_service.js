@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-var Item  = mongoose.model('item');
-var Vehicle  = mongoose.model('vehicle');
-var Query  = mongoose.model('query');
-var Item_Queries  = mongoose.model('item_query');
+var item  = mongoose.model('item');
+var vehicle  = mongoose.model('vehicle');
+var query  = mongoose.model('query');
+var item_query  = mongoose.model('item_query');
 
 
 //GET - Retorna un usuario con el id proporcionado

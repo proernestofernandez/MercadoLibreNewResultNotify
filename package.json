@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend para notificaciones de Mercado Libre.",
   "engines": {
-    "node": "10.x"
+    "node": "14.x"
   },
   "main": "app.js",
   "scripts": {

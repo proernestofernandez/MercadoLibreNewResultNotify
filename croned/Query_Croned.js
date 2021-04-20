@@ -1,7 +1,7 @@
 //var bodyParser = require('body-parser');
 
 //var Usuario = require("./models/Usuario");
-var Query = require("../models/Query");
+var query = require("../models/query");
 var Peticiones = require("../services/Peticiones");
 //var mongoose = require('mongoose');;
 

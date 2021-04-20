@@ -1,7 +1,10 @@
 
 
-var Usuario = require("../models/user");
-var Query = require("../models/query");
+var user = require("../models/user");
+var query = require("../models/query");
+var item = require("../models/item");
+var vehicle = require("../models/vehicle");
+var item_query = require("../models/item_query");
 
 var mongoose = require('mongoose');
 

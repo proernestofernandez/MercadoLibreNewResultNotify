@@ -42,8 +42,14 @@ psns.post('/psns',function(req, res) {
 
 app.use('/api', psns);
     var mongoDB = 'mongodb://localhost/psn';
-//    var mongoDB = 'mongodb://ernesdary:teamos2!@ds041178.mlab.com:41178/ernesdary';
-
+//    var mongoDB = 'mongodb:
+/*ernesdary:
+teamos2!
+@ds041178
+.mlab.com:
+41178/
+ernesdary';
+*/
 mongoose.connect(mongoDB, function(err, res) {
     if(err) {
         console.log('ERROR: No se pudo conectar con: '+mongoDB +'. ' + err);
