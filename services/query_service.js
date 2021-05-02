@@ -41,62 +41,68 @@ exports.add_query = function(query_param, callback) {
     });
 };
 
+
+
 //PUT - Excecute specific query BD
 exports.execute_query = function(query_param, callback) {
 
-    console.log("ENTROOO")
+    var result = query_param.path.match(/https:\/\/(.*.com)(.*)/)
+    hostname_param = result[1]
+    path_param = result[2] + "q=" + query_param.query
+
+    if( typeof query_param.parameters !== 'undefined'){
+        query_param.parameters.forEach(function(value,key){
+            path_param += "&"+ key + "=" + value
+        });
+    }
+
+    
     const options = {
-      hostname: 'api.mercadolibre.com',
+      hostname: hostname_param,
       port: 443,
-      path: '/sites/MLU/search?q=ford%20fiesta&KILOMETERS=[0km-60000km]&VEHICLE_YEAR=2014-2020',
+      path: path_param,
       method: 'GET'
     }
 
   const req2 = https.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`)
-
       var body = "";
 
       res.on("data", (chunk) => {
           body += chunk;
-          //process.stdout.write(body)
       });
-    })
 
-    req2.on('error', error => {
-        console.error(error)
-      })
-      
-      req2.end()
-
-
-      res2.on('end', function(){
+      res.on('end', function(){
           var list = JSON.parse(body);
-          console.log("Got a response: ", list.site_id);
-          console.log("Got a response: ", list.paging.total);
-
           list.results.forEach(function(value){
             console.log(value.title);
-            console.log(value.price);
+            /*console.log(value.price);
             console.log(value.currency_id);
             console.log(value.condition);
             console.log(value.permalink);
-            console.log(value.address.city_name);
+            console.log(value.address.city_name);*/
             console.log("");
 
           });
-          callback(null,saved_query)
+          callback(null,body)
         });
-      console.log("Terminoooo")
+      
+        res.on('error', error => {
+            console.error(error)
+          })
+    })
+    req2.end()
 
-
-    //const new_query = Object.assign(new Query, query_param)
-    
-    /*new_query.save( function(err, saved_query) {
-        if(err) callback(new Error("No se pudo crear el query"));
-        callback(null,saved_query)
-    });*/
-    
-    
   
+};
+
+
+
+exports.execute_all_queries_from_db = async function(query_param, callback) {
+    
+    const queries_db = await Query.find(function (err, queries) {
+        if (err) return console.error(err); 
+    })
+    queries_db.forEach(function(value){
+        this.execute_query(value,callback);
+      }.bind(this));
 };

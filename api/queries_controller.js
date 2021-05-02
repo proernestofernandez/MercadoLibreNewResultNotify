@@ -32,13 +32,13 @@ router.post('', async (req, res,next) => {
     })        
 });
 
-//Execute query
+//Execute all query
 router.put('', async (req, res,next) => {
     const query_param = req.body
-    queries_service.execute_query(query_param, function(err, saved_query) {
+    queries_service.execute_all_queries_from_db(query_param, function(err, saved_query) {
         if (err) res.send(err)
-        res.send(saved_query);    
     })        
+    res.send("All query executed");
 });
 
 
