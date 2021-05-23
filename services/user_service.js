@@ -15,12 +15,12 @@ exports.find_user_by_id = function(id, callback) {
 exports.find_user_by_params = function(nickname, callback) {
 
     if (!nickname) {
-        User.find(function (err, user) {
+        return User.findOne(function (err, user) {
             if(err) callback(err);
             callback(null,user);
         })
     }else {
-        User.find({'nickname': nickname }, function (err, user) {
+        return User.findOne({'nickname': nickname }, function (err, user) {
             if(err) callback(err);
             callback(null,user);
         })
