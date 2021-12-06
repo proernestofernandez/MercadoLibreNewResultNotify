@@ -12,19 +12,14 @@ exports.find_user_by_id = function(id, callback) {
 
 
 //GET - Retorna un usuario con el nickname proporcionado
-exports.find_user_by_params = function(nickname, callback) {
-
+exports.find_user_by_params = async (nickname) => {
+    let user;
     if (!nickname) {
-        return User.findOne(function (err, user) {
-            if(err) callback(err);
-            callback(null,user);
-        })
+        user = await User.findOne();
     }else {
-        return User.findOne({'nickname': nickname }, function (err, user) {
-            if(err) callback(err);
-            callback(null,user);
-        })
+        user = await User.findOne({'nickname': nickname });
     }
+    return user;
 };
 
 
@@ -38,4 +33,16 @@ exports.add_user = function(user_param, callback) {
         callback(null,saved_user)
     });
 };
+
+
+//TEST
+exports.test_user = async () => {
+
+    await console.log("AIGA");
+    await setTimeout(function() { console.log("AIGA 1"); }, 3000);
+    await console.log("AIGA 2");
+return "AIGA";
+};
+
+exports.test_user;
 

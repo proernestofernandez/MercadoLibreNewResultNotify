@@ -1,8 +1,11 @@
+//import test_user from '../services/user_service';
+
 const express = require('express');
 const router = express.Router();
 // const { function } = require('joi');
 
 const users_service = require('../services/user_service');
+
 
 ////Obtener todos los usuarios
 //router.get('/', (req, res, next) => {
@@ -13,13 +16,13 @@ const users_service = require('../services/user_service');
 //});
 
 //Obtener usuario por id
-router.get('/:id', async (req, res, next) => {
-    const id = req.params.id
-    users_service.find_user_by_id(id, function(err, user) {
-        if (err) res.send(err)
-        res.status(200).send(user);    
-    })      
-});
+// router.get('/:id', async (req, res, next) => {
+//     const id = req.params.id
+//     users_service.find_user_by_id(id, function(err, user) {
+//         if (err) res.send(err)
+//         res.status(200).send(user);    
+//     })      
+// });
 
 // Obtener usuarios por parametros
 router.get('', async (req, res, next) => {
@@ -38,6 +41,13 @@ router.post('', async (req, res,next) => {
         if (err) res.send(err)
         res.send(saved_user);    
     })        
+});
+
+//Endopoint de prueba
+router.get('/test', async (req, res, next) => {
+     
+     const lol = users_service.test_user();    
+     res.status(200).send(lol); 
 });
 
 module.exports = router;
