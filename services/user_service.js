@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User  = mongoose.model('user');
+const emailGmail = require('../utils/emailGmail');
 
 
 //GET - Retorna un usuario con el id proporcionado
@@ -39,7 +40,7 @@ exports.add_user = function(user_param, callback) {
 exports.test_user = async () => {
 
     await console.log("AIGA");
-    await setTimeout(function() { console.log("AIGA 1"); }, 3000);
+    emailGmail.sendEmail("pepe@gmail.com")
     await console.log("AIGA 2");
 return "AIGA";
 };

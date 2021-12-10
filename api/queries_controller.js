@@ -8,7 +8,6 @@ const queries_service = require('../services/query_service');
 
 //Obtener query por id
 router.get('/:id', async (req, res, next) => {
-    console.log("sadasfsfd");
     const id = req.params.id
     queries_service.find_query_by_id(id, function(err, query) {
         if (err) res.send(err)
@@ -41,7 +40,6 @@ router.post('', async (req, res, next) => {
 
 //Execute all query
 router.put('', async (req, res,next) => {
-    console.log("ARRANCA")
     queries_service.execute_all_queries_from_db()        
     res.send("All query executed");
 });

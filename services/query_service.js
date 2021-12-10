@@ -8,7 +8,7 @@ const https = require('https');
 const users_service = require('../services/user_service');
 const converters = require('../utils/converters');
 var ObjectId = require('mongoose').Types.ObjectId;
-// const { mainModule } = require('process');
+const emailGmail = require('../utils/emailGmail');
 
 
 
@@ -42,41 +42,45 @@ exports.add_query = async (query_param) => {
 
 isUpdateItems = async (itemML, oldItemResult) => {
     let updateItem = false;
-    if ((oldItemResult?.id_item_ml === itemML?.id_item_ml) && ( 
-        oldItemResult?.titulo !== itemML?.titulo || 
-        oldItemResult?.precio !== itemML?.precio || 
+    if ((oldItemResult?.id_item_ml === itemML?.id_item_ml) && (
+        oldItemResult?.titulo !== itemML?.titulo ||
+        oldItemResult?.precio !== itemML?.precio ||
         oldItemResult?.specific_item !== itemML?.specific_item)
-        ) {
-            updateItem = true;
-            console.log("Hay diferencia")
-        }
-   return updateItem;
+    ) {
+        updateItem = true;
+        console.log("Hay diferencia")
+    }
+    return updateItem;
 }
 
 //Create item_query in DB
 exports.add_items_query = async (items, query) => {
-    var newItemQuery;  
+    var newItemQuery;
     const user = await users_service.find_user_by_params(query.usuario_creacion);
     const oldItemsQueryResult = await ItemQuery.find({ query: new ObjectId(query._id), user: new ObjectId(user._id) });
- 
+    var updateItemList = [];
+    var newItemList = [];
+
     await items.reduce(async (preProm, itemResult) => {
         await preProm
         var saveItem = true;
 
         const itemML = await converters.ml_item_to_item(itemResult);
 
-        await oldItemsQueryResult.reduce(async  (preProm2, itemQueryResult) => {
+        await oldItemsQueryResult.reduce(async (preProm2, itemQueryResult) => {
             await preProm2;
             const oldItemResult = await Item.findOne({ _id: new ObjectId(itemQueryResult.item) });
             if ((oldItemResult?.id_item_ml === itemML?.id_item_ml)) {
                 saveItem = false;
             }
-            if (await isUpdateItems(itemML,oldItemResult)) {
-                oldItemResult.titulo = itemML?.titulo; 
-                oldItemResult.precio = itemML?.precio; 
+            console.log("EN EL MEDIO 1")
+            if (await isUpdateItems(itemML, oldItemResult)) {
+                oldItemResult.titulo = itemML?.titulo;
+                oldItemResult.precio = itemML?.precio;
                 oldItemResult.specific_item = itemML?.specific_item;
                 await oldItemResult.save();
                 // TODO notificar POR mail;
+                updateItemList.push(itemML);
             }
             return Promise.resolve()
         }, Promise.resolve());
@@ -90,9 +94,16 @@ exports.add_items_query = async (items, query) => {
             newItemQuery.user = user;
             await newItemQuery.save();
             // TODO notificar POR mail;
-        } 
+            newItemList.push(savedItem);
+            console.log("EN EL MEDIO 2")
+        }
         return Promise.resolve()
     }, Promise.resolve());
+
+    if (updateItemList || newItemList) {
+        console.log("Enviando mails")
+        emailGmail.sendNotificationEmail(updateItemList, newItemList, query, user);
+    }
 };
 
 //PUT - Excecute specific query BD
