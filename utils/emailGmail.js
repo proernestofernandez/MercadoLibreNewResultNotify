@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 
 //GET - Retorna un query con el id proporcionado
 exports.sendNotificationEmail = async (updateItemList, newItemList, query, user) => {

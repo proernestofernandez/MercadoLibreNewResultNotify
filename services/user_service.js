@@ -1,19 +1,25 @@
-var mongoose = require('mongoose');
-var User  = mongoose.model('user');
-const emailGmail = require('../utils/emailGmail');
+const mongoose = require('mongoose');
+const User  = mongoose.model('user');
 
 
 //GET - Retorna un usuario con el id proporcionado
-exports.find_user_by_id = function(id, callback) {
-    User.findById(id, function (err, user) {
-        if(err) callback(err);
-        callback(null,user);
-    })
+exports.find_all_users = async () => {
+    let users = await User.find()
+    return users;
+};
+
+//GET - Retorna un usuario con el id proporcionado
+exports.find_user_by_id = async (id) => {
+    let user = null;
+    if (mongoose.Types.ObjectId.isValid(id)){
+        user = await User.findById(id)
+    }; 
+    return user;
 };
 
 
 //GET - Retorna un usuario con el nickname proporcionado
-exports.find_user_by_params = async (nickname) => {
+exports.find_user_by_nickname = async (nickname) => {
     let user;
     if (!nickname) {
         user = await User.findOne();
@@ -25,24 +31,15 @@ exports.find_user_by_params = async (nickname) => {
 
 
 //POST - Crea un usuario en la BD
-exports.add_user = function(user_param, callback) {
-
-    const new_user = Object.assign(new User, user_param)
+exports.add_user = async (user_param) => {
+    try{
+        const new_user = await  Object.assign(new User, user_param)
+        const saved_user = await new_user.save();
+        return saved_user;
+    } catch (err){
+        return "Error al crear el usuario. Puede que ya exista el nickname o email proporcionado.";
+    }
     
-    new_user.save( function(err, saved_user) {
-        if(err) callback(new Error("No se pudo crear el usuario"));
-        callback(null,saved_user)
-    });
-};
-
-
-//TEST
-exports.test_user = async () => {
-
-    await console.log("AIGA");
-    emailGmail.sendEmail("pepe@gmail.com")
-    await console.log("AIGA 2");
-return "AIGA";
 };
 
 exports.test_user;
