@@ -1,13 +1,12 @@
 
 require('dotenv').config()
-const user = require("../models/user");
-const query = require("../models/query");
-// var item = require("../models/item");
-// var vehicle = require("../models/vehicle");
-// var item_query = require("../models/item_query");
 
 var mongoose = require('mongoose');
-
+const user = require("../models/user");
+const query = require("../models/query");
+const item = require("../models/item");
+const vehicle = require("../models/vehicle");
+const item_query = require("../models/item_query");
 
 
 const mongoDB_path = process.env.MONGODB_PATH;
