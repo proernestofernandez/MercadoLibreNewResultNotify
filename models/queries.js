@@ -13,4 +13,4 @@ var querySchema = new Schema({
   periodicidad_hora: { type: String, required: true }
 });
 
-module.exports = mongoose.model('querys', querySchema);
+module.exports = mongoose.model('query', querySchema);

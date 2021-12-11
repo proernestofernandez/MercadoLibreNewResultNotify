@@ -12,7 +12,11 @@ mongoose.connect(mongoDB_path, function (err, res) {
     }
 });
 
-
+require("../models/queries");
+require("../models/user");
+const item = require("../models/item");
+const vehicle = require("../models/vehicle");
+const item_query = require("../models/item_query");
 
 
 

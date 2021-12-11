@@ -1,9 +1,4 @@
 var mongoose = require('mongoose');
-require("../models/queries");
-require("../models/user");
-const item = require("../models/item");
-const vehicle = require("../models/vehicle");
-const item_query = require("../models/item_query");
 var Query = mongoose.model('query');
 var ItemQuery = mongoose.model('item_query');
 var User = mongoose.model('user');
