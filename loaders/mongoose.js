@@ -1,6 +1,6 @@
 
 require('dotenv').config()
-// var user = require("../models/user");
+var user = require("../models/user");
 // var query = require("../models/query");
 // var item = require("../models/item");
 // var vehicle = require("../models/vehicle");
