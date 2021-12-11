@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
-const user = require("../models/user");
-// const query = require("../models/query");
-// const item = require("../models/item");
-// const vehicle = require("../models/vehicle");
-// const item_query = require("../models/item_query");
+require("../models/user");
+
 const User = mongoose.model('user');
 
 
