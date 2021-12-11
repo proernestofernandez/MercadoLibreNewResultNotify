@@ -37,8 +37,7 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
   });
 
   message = {
-    from: "from-example@email.com",
-    to: "chisteoriental@mailinator.com",
+    to: user.email,
     subject: "CAMBIOS",
     // text: "Hello SMTP Email"
     html: "<h1>Cambios</h1>\n " + html
