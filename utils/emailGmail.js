@@ -4,10 +4,7 @@ require('dotenv').config()
 
 //GET - Retorna un query con el id proporcionado
 exports.sendNotificationEmail = async (updateItemList, newItemList, query, user) => {
-  console.log(updateItemList);
-  console.log(newItemList);
-  console.log(query);
-  console.log("🚀 ~ file: emailGmail.js ~ line 9 ~ user", user)
+
   html = " ACTUALIZACIONES: <br>";
 
   await updateItemList.reduce(async (preProm, item) => {
@@ -42,7 +39,6 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
     // text: "Hello SMTP Email"
     html: "<h1>Cambios</h1>\n " + html
   }
-  console.log("🚀 ~ file: emailGmail.js ~ line 44 ~ html", html)
 
   transport.sendMail(message, function (err, info) {
     if (err) {

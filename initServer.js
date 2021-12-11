@@ -6,4 +6,4 @@ const loader_model = require("./loaders/mongoose");
 const loader_api = require("./loaders/express");
 
 // Se inicializa los crons
-// const execute_crons = require("./utils/cronExecuteQueries");
+// const execute_crons = require("./cron/cronExecuteQueries");

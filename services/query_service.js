@@ -1,8 +1,7 @@
-var mongoose = require('mongoose');
-var Query = mongoose.model('query');
-var ItemQuery = mongoose.model('item_query');
-var User = mongoose.model('user');
-var Item = mongoose.model('item');
+const mongoose = require('mongoose');
+const Query = mongoose.model('query');
+const ItemQuery = mongoose.model('item_query');
+const Item = mongoose.model('item');
 
 const https = require('https');
 const users_service = require('../services/user_service');
