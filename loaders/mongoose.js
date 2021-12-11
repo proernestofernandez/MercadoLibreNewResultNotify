@@ -1,5 +1,5 @@
 
-
+require('dotenv').config()
 var user = require("../models/user");
 var query = require("../models/query");
 var item = require("../models/item");
@@ -10,11 +10,12 @@ var mongoose = require('mongoose');
 
 
 
-var mongoDB_path = 'mongodb://localhost/ml_notify';
-mongoose.connect(mongoDB_path, function(err, res) {
-    if(err) {
-        console.log('ERROR: No se pudo conectar con: '+mongoDB_path +'. ' + err);
-    }else {
-        console.log('Connectado a la base de datos: '+ mongoDB_path);
+const mongoDB_path = process.env.MONGODB_PATH;
+console.log(mongoDB_path)
+mongoose.connect(mongoDB_path, function (err, res) {
+    if (err) {
+        console.log('ERROR: No se pudo conectar con: ' + mongoDB_path + '. ' + err);
+    } else {
+        console.log('Connectado a la base de datos: ' + mongoDB_path);
     }
-    });
+});

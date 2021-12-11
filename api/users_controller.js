@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
 
 //Obtener usuario por id
 router.get('/:id', async (req, res) => {
+    console.log("AVERIGUANDO");
     const id = req.params.id
     let user = await users_service.find_user_by_id(id)
     if (user) {
@@ -37,11 +38,11 @@ router.get('/:id', async (req, res) => {
 //Crear usuario
 router.post('', async (req, res, next) => {
     const user_param = req.body
-    const saved_user = await users_service.add_user(user_param); 
-    if (saved_user){
+    const saved_user = await users_service.add_user(user_param);
+    if (saved_user) {
         res.send(saved_user);
     } else {
-        res.send("No se pudo guardar el usuario.")   
+        res.send("No se pudo guardar el usuario.")
     }
 });
 
