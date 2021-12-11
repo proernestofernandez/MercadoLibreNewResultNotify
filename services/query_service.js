@@ -56,7 +56,7 @@ isUpdateItems = async (itemML, oldItemResult) => {
 //Create item_query in DB
 exports.add_items_query = async (items, query) => {
     var newItemQuery;
-    const user = await users_service.find_user_by_params(query.usuario_creacion);
+    const user = await users_service.find_user_by_nickname(query.usuario_creacion);
     const oldItemsQueryResult = await ItemQuery.find({ query: new ObjectId(query._id), user: new ObjectId(user._id) });
     var updateItemList = [];
     var newItemList = [];
