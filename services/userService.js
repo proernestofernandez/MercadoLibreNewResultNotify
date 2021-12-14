@@ -22,15 +22,15 @@ exports.find_user_by_id = async (id) => {
 
 //GET - Retorna un usuario con el nickname proporcionado
 exports.find_user_by_nickname = async (nickname) => {
-    let user;
-    if (!nickname) {
-        user = await User.findOne();
-    } else {
-        user = await User.findOne({ 'nickname': nickname });
-    }
+    let user = await User.findOne({ 'nickname': nickname });
     return user;
 };
 
+//GET - Retorna un usuario con el email proporcionado
+exports.find_user_by_email = async (email) => {
+    let user = await User.findOne({ 'email': email });
+    return user;
+};
 
 //POST - Crea un usuario en la BD
 exports.add_user = async (user_param) => {

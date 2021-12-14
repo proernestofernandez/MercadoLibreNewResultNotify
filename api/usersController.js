@@ -3,12 +3,12 @@
 const express = require('express');
 const router = express.Router();
 // const { function } = require('joi');
-
-const users_service = require('../services/user_service');
+const authService = require('../services/authService');
+const users_service = require('../services/userService');
 
 
 //Obtener todos los usuarios
-router.get('/', async (req, res) => {
+router.get('/', authService.ensureAuthenticated, async (req, res) => {
     const nickname = req.query.nickname;
     let users;
     if (nickname) {
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 });
 
 //Obtener usuario por id
-router.get('/:id', async (req, res) => {
+router.get('/:id', authService.ensureAuthenticated, async (req, res) => {
     console.log("AVERIGUANDO");
     const id = req.params.id
     let user = await users_service.find_user_by_id(id)
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 });
 
 //Crear usuario
-router.post('', async (req, res, next) => {
+router.post('', authService.ensureAuthenticated, async (req, res, next) => {
     const user_param = req.body
     const saved_user = await users_service.add_user(user_param);
     if (saved_user) {

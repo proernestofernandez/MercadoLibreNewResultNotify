@@ -4,7 +4,7 @@ const ItemQuery = mongoose.model('item_query');
 const Item = mongoose.model('item');
 
 const https = require('https');
-const users_service = require('../services/user_service');
+const users_service = require('./userService');
 const converters = require('../utils/converters');
 var ObjectId = require('mongoose').Types.ObjectId;
 const emailGmail = require('../utils/emailGmail');

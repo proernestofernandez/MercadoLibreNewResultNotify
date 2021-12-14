@@ -17,6 +17,7 @@ require("../models/user");
 require("../models/item");
 require("../models/vehicle");
 require("../models/item_query");
+require("../models/loginToken");
 
 
 
