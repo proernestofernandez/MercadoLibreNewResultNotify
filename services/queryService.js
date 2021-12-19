@@ -98,7 +98,7 @@ exports.add_items_query = async (items, query) => {
         return Promise.resolve()
     }, Promise.resolve());
 
-    if (updateItemList || newItemList) {
+    if (updateItemList.length || newItemList.length) {
         console.log("Enviando mails")
         emailGmail.sendNotificationEmail(updateItemList, newItemList, query, user);
     }
