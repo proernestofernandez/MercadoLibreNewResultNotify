@@ -25,7 +25,6 @@ router.get('/', authService.ensureAuthenticated, async (req, res) => {
 
 //Obtener usuario por id
 router.get('/:id', authService.ensureAuthenticated, async (req, res) => {
-    console.log("AVERIGUANDO");
     const id = req.params.id
     let user = await users_service.find_user_by_id(id)
     if (user) {
@@ -36,9 +35,11 @@ router.get('/:id', authService.ensureAuthenticated, async (req, res) => {
 });
 
 //Crear usuario
-router.post('', authService.ensureAuthenticated, async (req, res, next) => {
+router.post('', async (req, res, next) => {
     const user_param = req.body
+    console.log("🚀 ~ file: usersController.js ~ line 41 ~ router.post ~ user_param", user_param)
     const saved_user = await users_service.add_user(user_param);
+    console.log("🚀 ~ file: usersController.js ~ line 42 ~ router.post ~ saved_user", saved_user)
     if (saved_user) {
         res.send(saved_user);
     } else {

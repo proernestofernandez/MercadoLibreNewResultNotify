@@ -1,0 +1,13 @@
+Devuelve categorias para Uruguay
+https://api.mercadolibre.com/sites/MLU/categories
+
+"id": "MLU1459","name": "Inmuebles"
+"id": "MLU1743","name": "Autos, Motos y Otros"
+
+Categoria de inmuebles
+https://api.mercadolibre.com/categories/MLU1459
+ "id": "MLU1472","name": "Apartamentos","total_items_in_this_category": 145421
+ "id": "MLU1466", "name": "Casas", "total_items_in_this_category": 68957
+
+Devuelve resultados de una busqueda
+https://api.mercadolibre.com/sites/MLU/search?q=Venta%20casa%20la%20blanqueada

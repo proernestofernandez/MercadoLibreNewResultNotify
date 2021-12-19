@@ -56,6 +56,7 @@ isUpdateItems = async (itemML, oldItemResult) => {
 exports.add_items_query = async (items, query) => {
     var newItemQuery;
     const user = await users_service.find_user_by_nickname(query.usuario_creacion);
+    console.log(user)
     const oldItemsQueryResult = await ItemQuery.find({ query: new ObjectId(query._id), user: new ObjectId(user._id) });
     var updateItemList = [];
     var newItemList = [];
@@ -72,7 +73,6 @@ exports.add_items_query = async (items, query) => {
             if ((oldItemResult?.id_item_ml === itemML?.id_item_ml)) {
                 saveItem = false;
             }
-            console.log("EN EL MEDIO 1")
             if (await isUpdateItems(itemML, oldItemResult)) {
                 oldItemResult.titulo = itemML?.titulo;
                 oldItemResult.precio = itemML?.precio;
@@ -94,7 +94,6 @@ exports.add_items_query = async (items, query) => {
             await newItemQuery.save();
             // TODO notificar POR mail;
             newItemList.push(savedItem);
-            console.log("EN EL MEDIO 2")
         }
         return Promise.resolve()
     }, Promise.resolve());
@@ -124,7 +123,6 @@ exports.execute_query = async (query) => {
         path: path_param,
         method: 'GET'
     }
-
     return await doQuery(options, query);
 };
 
@@ -156,6 +154,8 @@ exports.find_query_by_params = function (nickname, callback) {
 
 
 doQuery = async (options, query) => {
+    console.log(options)
+    console.log(query)
     return new Promise(resolve => {
 
 

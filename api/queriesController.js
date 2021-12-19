@@ -39,7 +39,7 @@ router.post('', async (req, res, next) => {
 });
 
 //Execute all query
-router.put('', authService.ensureAuthenticated, async (req, res, next) => {
+router.put('', async (req, res, next) => {
     queries_service.execute_all_queries_from_db()
     res.send("All query executed");
 });
