@@ -8,6 +8,7 @@ var querySchema = new Schema({
     type: Map,
     of: String
   },
+  nombre: { type: String, required: true },
   momento_creacion: { type: String, required: true },
   usuario_creacion: { type: String, required: true },
   periodicidad_hora: { type: String, required: true }

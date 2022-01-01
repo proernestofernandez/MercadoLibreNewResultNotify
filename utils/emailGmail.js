@@ -40,7 +40,7 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
 
   message = {
     to: user.email,
-    subject: "CAMBIOS",
+    subject: "Cambos en " + query.nombre,
     // text: "Hello SMTP Email"
     html: "<h1>Cambios</h1>\n " + html
   }
