@@ -18,6 +18,7 @@ require("../models/item");
 require("../models/vehicle");
 require("../models/item_query");
 require("../models/loginToken");
+require("../models/audit");
 
 
 
