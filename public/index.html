@@ -83,56 +83,31 @@
   </div>
 
 
-  <!-- ACTIVIDADES -->
+  <!-- Ultimas ejecuciones -->
 
-  <section class="about d-lg-flex justify-content-center align-items-center" id="actividades"
-    style="margin-top: 100px;">
-    <div class="container" id="divCategorias">
-      <h1 id="msgNoLogueado">Debes estar logueado para ver las actividades</h1>
-      <div class="col-lg-8 mx-auto" style="display: none;" id="actTitulo">
-        <h2>Actividades</h2>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESERVAS -->
-  <section class="project py-5" id="reservas" style="display: none;">
+  <section class="project py-5" id="SecEjecuciones">
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-11 text-center mx-auto col-12">
+        <div class="" style="text-align:left">
 
-          <div class="col-lg-8 mx-auto">
-            <h2>Mis reservas</h2>
-            <div id="misReservas">
+          <div class="mx-auto">
+            <h2>Ultimas ejecuciones</h2>
+            <div id="sysEjecuciones">
 
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer py-5">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-lg-12 col-12">
-          <p class="copyright-text text-center"></p>
-        </div>
-
-      </div>
-    </div>
-  </footer>
+  <object data="components/footer.html"></object>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/Headroom.js"></script>
   <script src="js/jQuery.headroom.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
   <script src="js/acordion.js"></script>
 
   <script>
@@ -273,27 +248,22 @@
     }
 
 
-    function buscarMisReservas() {
-      var token = localStorage.getItem('token');
-      if (token) {
-        document.getElementById('reservas').style.display = "Block";
+    function buscarLogs() {
 
-        const http = new XMLHttpRequest()
-        http.open('GET', 'https://api-agenda.nacionalclubsocial.uy/reservation/')
-        http.setRequestHeader('Authorization', 'Bearer ' + token)
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.send()
-        http.onload = function () {
+      const http = new XMLHttpRequest()
+      http.open('GET', '/audit/')
+      http.setRequestHeader('Accept', '*/*')
+      http.setRequestHeader('Content-type', 'application/json')
+      http.send()
+      http.onload = function () {
+        let listaLogs = JSON.parse(http.responseText);
+        // Do whatever with response
+        document.getElementById('sysEjecuciones').innerHTML = "";
+        for (const log of listaLogs) {
 
-          let listaReservas = JSON.parse(http.responseText).description;
-          // Do whatever with response
-          document.getElementById('misReservas').innerHTML = "";
-          for (const res of listaReservas) {
-
-            document.getElementById('misReservas').innerHTML +=
-              "<p>Dia " + res.dayoftheweek + "  -  " + res.name + "  Inicio:" + res.starttime + "  Fin:" + res.endtime + "</p>"
-          }
+          document.getElementById('sysEjecuciones').innerHTML +=
+            "<p> " + log.type + "  -  Fecha:" + log.dateTime.split("T")[0] +
+            " hora: " + log.dateTime.split("T")[1].substring(0, 5) + "hs" + "</p>"
         }
       }
     }
@@ -303,9 +273,10 @@
 
 
 
-    procesarInicioSesion();
-    buscarCategorias();
-    buscarMisReservas()
+
+    // procesarInicioSesion();
+    // buscarCategorias();
+    buscarLogs()
   </script>
 
 
