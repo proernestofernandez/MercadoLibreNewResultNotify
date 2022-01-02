@@ -1,0 +1,47 @@
+<html style="height: 100%; width: 100%;">
+<section class="project py-5" id="SecEjecuciones">
+    <div class="container">
+
+        <div class="row">
+            <div class="" style="text-align:left">
+
+                <div class="mx-auto">
+                    <h2>Ultimas ejecuciones</h2>
+                    <div id="sysEjecuciones">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    function buscarLogs() {
+
+        const http = new XMLHttpRequest()
+        http.open('GET', '/audit/')
+        http.setRequestHeader('Accept', '*/*')
+        http.setRequestHeader('Content-type', 'application/json')
+        http.send()
+        http.onload = function () {
+            let listaLogs = JSON.parse(http.responseText);
+            console.log("🚀 ~ file: lastExcecutions.html ~ line 31 ~ buscarLogs ~ listaLogs", listaLogs)
+            // Do whatever with response
+            document.getElementById('sysEjecuciones').innerHTML = "";
+            for (const log of listaLogs) {
+
+                document.getElementById('sysEjecuciones').innerHTML +=
+                    "<p> " + log.type + "  -  Fecha:" + log.dateTime.split("T")[0] +
+                    " hora: " + log.dateTime.split(" ")[1].substring(0, 5) + "hs" + "</p>"
+            }
+        }
+    }
+
+
+    buscarLogs()
+</script>
+
+</html>

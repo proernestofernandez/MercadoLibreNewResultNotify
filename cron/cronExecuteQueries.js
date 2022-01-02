@@ -5,7 +5,7 @@ const Audit = mongoose.model('audit');
 const queries_service = require('../services/queryService');
 const converters = require('../utils/converters');
 
-cron.schedule('0 0,30,27 * * * *', async function () {
+cron.schedule('0 0,30 * * * *', async function () {
   console.log('Ejecutando todas las consultas cada media hora');
 
   queries_service.execute_all_queries_from_db();

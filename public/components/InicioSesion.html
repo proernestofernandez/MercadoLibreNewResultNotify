@@ -1,0 +1,70 @@
+<html style="text-align:center;">
+<div id="id01" class="modal">
+
+    <div class="modal-content animate">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                title="Close Modal">&times;</span>
+            <img src="../images/mercadolibre.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" id="nameInput" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" id="passwordInput" placeholder="Enter Password" name="psw" required>
+            <label id="validCredential" style="color: red; display: none;"><b>Usuario/contraseña
+                    incorrectas.</b></label>
+            <label id="validCredentialLastname" style="color: red; display: none;"><b>Su usuario no está habilitado para
+                    usar esta web.</b></label>
+
+            <button onclick="iniciarSesion()">Iniciar sesión</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function iniciarSesion() {
+        let params = JSON.stringify({
+            user: document.getElementById('nameInput').value,
+            password: document.getElementById('passwordInput').value,
+        });
+
+        const http = new XMLHttpRequest()
+        http.open('POST', '/users/contacto')
+        // http.setRequestHeader('Authorization', 'Bearer 288abceb-0a1a-4095-9f79-89d57d4c0ba9')
+        http.setRequestHeader('Accept', '*/*')
+        http.setRequestHeader('Content-type', 'application/json')
+        http.setRequestHeader('Content-type', 'text/plain')
+        http.send(JSON.stringify(params)) // Make sure to stringify
+        http.send(params) // Make sure to stringify
+    }
+
+    function procesarInicioSesion() {
+        var userName = localStorage.getItem('userName');
+        if (userName && userName != 'undefined') {
+            document.getElementById('msgNombreLogueado').innerHTML = userName;
+            document.getElementById('msgNombreLogueado').style.display = "Block";
+            document.getElementById('botonLogin').style.display = "None";
+            document.getElementById('actTitulo').style.display = "Block";
+        }
+    }
+
+</script>
+<script>
+    procesarInicioSesion();
+</script>
+
+</html>
