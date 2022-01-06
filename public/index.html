@@ -16,44 +16,17 @@
 
   <!-- MAIN STYLE -->
   <link rel="stylesheet" href="css/tooplate-style.css">
-
-
 </head>
 
 <body>
 
   <!-- MENU de LOGIN -->
-  <nav class="navbar navbar-expand-sm navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> Notificacion de consultas</a>
+  <iframe src="components/header.html"
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a href="#actividades" class="nav-link"><span data-hover="Actividades">Actividades</span></a>
-          </li>
-          <li class="nav-item">
-            <a href="#reservas" class="nav-link"><span data-hover="Reservas">Reservas</span></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-lg-auto">
-
-          <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
-            id="botonLogin">Login</button>
-          <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
-
-        </ul>
-
-      </div>
-    </div>
-  </nav>
+  <p>
+    EN ESTA PÁGINA VAS A PODER AGENDAR CONSULTAS DE MERCADO LIBRE Y OBTENER UN AVISO CUANDO HAYA CAMBIOS O NUEVOS ITEMS
+  </p>
 
   <!-- PARA IMPORTAR MAS DE UN HIJO -->
   <!-- <iframe src="included.html" onload="this.insertAdjacentHTML('afterend', (this.contentDocument.body||this.contentDocument).innerHTML);this.remove()"></iframe> -->
@@ -64,20 +37,12 @@
     onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 
 
-  <!-- Ultimas ejecuciones -->
-  <iframe src="components/lastExcecutions.html"
-    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
-
-
   <!-- FOOTER -->
   <iframe src="components/footer.html"
     onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 
 
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/inicioSesion.js"></script>
-  <script src="js/consultas.js"></script>
-
 
 
 </body>

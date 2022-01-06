@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class='uil uil-user'></i> Notificacion de consultas</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto" style="display: none;" id="headerTabs">
+                <li class="nav-item">
+                    <a href="/query/my-queries" class="nav-link"><span data-hover="Consultas">Consultas</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/info" class="nav-link"><span data-hover="Info">Info</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-lg-auto">
+
+                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
+                    id="botonLogin">Login</button>
+                <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<script src="/js/inicioSesion.js"></script>

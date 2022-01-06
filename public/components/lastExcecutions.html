@@ -14,31 +14,3 @@
         </div>
     </div>
 </section>
-
-
-<script>
-
-    function buscarLogs() {
-
-        const http = new XMLHttpRequest()
-        http.open('GET', '/audit/')
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.send()
-        http.onload = function () {
-            let listaLogs = JSON.parse(http.responseText);
-            console.log("🚀 ~ file: lastExcecutions.html ~ line 31 ~ buscarLogs ~ listaLogs", listaLogs)
-            // Do whatever with response
-            document.getElementById('sysEjecuciones').innerHTML = "";
-            for (const log of listaLogs) {
-
-                document.getElementById('sysEjecuciones').innerHTML +=
-                    "<p> " + log.type + "  -  Fecha:" + log.dateTime.split("T")[0] +
-                    " hora: " + log.dateTime.split(" ")[1].substring(0, 5) + "hs" + "</p>"
-            }
-        }
-    }
-
-
-    buscarLogs()
-</script>

@@ -18,9 +18,9 @@ exports.login = async (req, res, next) => {
     }
     let loginParams = req.body;
 
-    let user = await users_service.find_user_by_nickname(loginParams.nickname);
+    let user = await users_service.find_user_by_nickname(loginParams.username);
     if (!user) {
-      user = await users_service.find_user_by_email(loginParams.email);
+      user = await users_service.find_user_by_email(loginParams.username);
     }
     if (!user || user.password !== crypto.createHash("sha256").update(loginParams.password).digest("hex")) {
       return res.status(401).send({
@@ -45,7 +45,13 @@ exports.login = async (req, res, next) => {
       savedLoginToken = await newloginToken.save();
     }
 
-    res.status(200).send({ token: token })
+    res.status(200).send({
+      token: token,
+      nickname: user.nickname,
+      email: user.email,
+      firstName: user.nombre,
+      lastName: user.apellido
+    })
     console.log('Logged in ' + user.email + ' success.')
   } catch (err) {
     return next(err)
@@ -128,7 +134,7 @@ exports.validate = (method) => {
     case 'login': {
       return [
         body('password', 'password doesnt exists').exists(),
-        body('nickname', 'Invalid nickname').exists() || body('email', 'Invalid email').exists().isEmail(),
+        body('username', 'Invalid nickname or email').exists(),
       ]
     }
   }

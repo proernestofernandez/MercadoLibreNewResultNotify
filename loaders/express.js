@@ -20,6 +20,8 @@ express()
     .use('/audit', auditMiddleware)
     .use('/auth', authMiddleware)
     /* serve your front (stored in the public folder) */
-    .use("/", express.static("public"))
+    .use("/", express.static("public", {
+        extensions: ['html', 'htm']
+    }))
     .listen(port, () => console.log(`ESCUCHANDO EN EL PUERTO ${port}...`));
 

@@ -38,12 +38,10 @@ exports.find_user_by_email = async (email) => {
 exports.add_user = async (user_param) => {
     try {
         const new_user = await Object.assign(new User, user_param)
-        console.log("🚀 ~ file: userService.js ~ line 39 ~ exports.add_user= ~ new_user", new_user)
         new_user.password = crypto.createHash("sha256").update(user_param.password).digest("hex")
         const saved_user = await new_user.save();
         return saved_user;
     } catch (err) {
-        console.log("🚀 ~ file: userService.js ~ line 43 ~ exports.add_user= ~ err", err)
         return "Error al crear el usuario. Puede que ya exista el nickname o email proporcionado.";
     }
 
