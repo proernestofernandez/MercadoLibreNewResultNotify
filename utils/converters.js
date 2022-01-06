@@ -22,20 +22,22 @@ exports.ml_item_to_item = async function (item) {
 };
 
 
-exports.newFormatteDate = function () {
+exports.newFormattedDate = function () {
 
     function twoDigitPad(num) {
         return num < 10 ? "0" + num : num;
     }
 
-    let patternStr = 'yyyy-MM-dd HH:mm';
+    let patternStr = 'yyyy-MM-dd HH:mm tt';
 
-    var date = new Date();
-    var yyyy = date.getFullYear(),
-        HH = twoDigitPad(date.getHours()),
-        mm = twoDigitPad(date.getMinutes()),
-        dd = twoDigitPad(date.getDate()),
-        MM = twoDigitPad(date.getMonth() + 1);
+    var date = new Date().toLocaleString("iso", { timeZone: "America/Montevideo" });
+
+    var yyyy = date.split("/")[2].split(",")[0],
+        MM = twoDigitPad(date.split("/")[0]),
+        dd = twoDigitPad(date.split("/")[1]),
+        HH = twoDigitPad(date.split(", ")[1].split(":")[0]),
+        mm = twoDigitPad(date.split(":")[1]),
+        tt = twoDigitPad(date.split(" ")[2]);
 
     // checks to see if month name will be used
     patternStr = patternStr
@@ -43,7 +45,8 @@ exports.newFormatteDate = function () {
         .replace('mm', mm)
         .replace('MM', MM)
         .replace('dd', dd)
-        .replace('yyyy', yyyy);
+        .replace('yyyy', yyyy)
+        .replace('tt', tt);
 
     return patternStr;
 };

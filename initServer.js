@@ -7,3 +7,4 @@ const loader_api = require("./loaders/express");
 
 // Se inicializa los crons
 const execute_crons = require("./cron/cronExecuteQueries");
+

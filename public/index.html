@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,7 +22,7 @@
 
 <body>
 
-  <!-- MENU -->
+  <!-- MENU de LOGIN -->
   <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container">
       <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> Notificacion de consultas</a>
@@ -43,101 +43,40 @@
             <a href="#reservas" class="nav-link"><span data-hover="Reservas">Reservas</span></a>
           </li>
         </ul>
+        <ul class="navbar-nav ml-lg-auto">
 
+          <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
+            id="botonLogin">Login</button>
+          <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
+
+        </ul>
 
       </div>
     </div>
   </nav>
 
+  <!-- PARA IMPORTAR MAS DE UN HIJO -->
+  <!-- <iframe src="included.html" onload="this.insertAdjacentHTML('afterend', (this.contentDocument.body||this.contentDocument).innerHTML);this.remove()"></iframe> -->
 
-  <!-- LOGIN -->
-  <div>
-    <object data="components/InicioSesion.html" style="height: 100%; width: 100%;"></object>
-  </div>
 
+  <!-- Modal LOGIN -->
+  <iframe src="components/InicioSesion.html"
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 
 
   <!-- Ultimas ejecuciones -->
-  <div>
-    <object data="components/lastExcecutions.html" style="height: 100%; width: 100%;"></object>
-  </div>
+  <iframe src="components/lastExcecutions.html"
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
 
   <!-- FOOTER -->
-  <object data="components/footer.html"></object>
+  <iframe src="components/footer.html"
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+
 
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/Headroom.js"></script>
-  <script src="js/jQuery.headroom.js"></script>
-  <script src="js/acordion.js"></script>
-
-  <script>
-
-    function actividades(actId) {
-      var token = localStorage.getItem('token');
-      var userId = localStorage.getItem('userId');
-
-      var i = 0;
-      var length = 6;
-      const http = new XMLHttpRequest();
-      (function loop(i, length) {
-        if (i >= length) {
-          return;
-        }
-
-        http.open('GET', 'https://api-agenda.nacionalclubsocial.uy/activitytime/?id=' + actId + '&dow=' + i + '&userId=' + userId)
-        http.setRequestHeader('Authorization', 'Bearer ' + token)
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.onreadystatechange = function () {
-          if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
-            var actividades = JSON.parse(http.responseText).description;
-            for (const act of actividades) {
-              divPanel = document.getElementById('panel' + actId).innerHTML +=
-                " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
-                " <div  style='width: 70%'> " +
-                "<p>Dia " + act.dayoftheweek + "  -  " + act.name + "  Inicio:" + act.starttime + "  Fin:" + act.endtime + "</p>" +
-                "</div>" +
-                " <div  style='width: 30%; text-align: right'> " +
-                "<button style='width: fit-content;margin:0px;padding:5px' onclick='reservarActividad(" + act.id + "," + act.dayoftheweek + ")'>Reservar</button>" +
-                "</div>" +
-                "</div>";
-            }
-
-            loop(i + 1, length);
-          }
-        }
-        http.send();
-      })(0, length);
-
-    }
-
-
-    function reservarActividad(idAct, dow) {
-      var token = localStorage.getItem('token');
-      var userId = localStorage.getItem('userId');
-      var dowToday = new Date().getDay();
-      var dowReservar = 0;
-      if (dow - dowToday >= 0) {
-        dowReservar = dow - dowToday;
-      } else {
-        dowReservar = 7 + (dow - dowToday);
-      }
-      let params = "{\"usr\":\"" + userId + "\",\"at\":\"" + idAct + "\",\"day\":\"" + dowReservar + "\",\"description\":\"\"}";
-      const http = new XMLHttpRequest()
-      http.open('POST', 'https://api-agenda.nacionalclubsocial.uy/reservation/')
-      http.setRequestHeader('Authorization', 'Bearer ' + token)
-      http.setRequestHeader('Accept', '*/*')
-      http.setRequestHeader('Content-type', 'application/json')
-      http.setRequestHeader('Content-type', 'text/plain')
-      http.send(params) // Make sure to stringify
-      http.onload = function () {
-        console.log("RESERVO");
-        alert("Se ha procesado la reserva correctamente");
-        buscarMisReservas();
-      }
-    }
-
-  </script>
+  <script src="js/inicioSesion.js"></script>
+  <script src="js/consultas.js"></script>
 
 
 
