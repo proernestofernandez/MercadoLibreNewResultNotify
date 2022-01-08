@@ -1,40 +1,37 @@
 
-function actividades(actId) {
+console.log("ACAAA")
+
+function actividades() {
     var token = localStorage.getItem('token');
-    var userId = localStorage.getItem('userId');
 
-    var i = 0;
-    var length = 6;
     const http = new XMLHttpRequest();
-    (function loop(i, length) {
-        if (i >= length) {
-            return;
-        }
 
-        http.open('GET', 'https://api-agenda.nacionalclubsocial.uy/activitytime/?id=' + actId + '&dow=' + i + '&userId=' + userId)
-        http.setRequestHeader('Authorization', 'Bearer ' + token)
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.onreadystatechange = function () {
-            if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
-                var actividades = JSON.parse(http.responseText).description;
-                for (const act of actividades) {
-                    divPanel = document.getElementById('panel' + actId).innerHTML +=
-                        " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
-                        " <div  style='width: 70%'> " +
-                        "<p>Dia " + act.dayoftheweek + "  -  " + act.name + "  Inicio:" + act.starttime + "  Fin:" + act.endtime + "</p>" +
-                        "</div>" +
-                        " <div  style='width: 30%; text-align: right'> " +
-                        "<button style='width: fit-content;margin:0px;padding:5px' onclick='reservarActividad(" + act.id + "," + act.dayoftheweek + ")'>Reservar</button>" +
-                        "</div>" +
-                        "</div>";
+    http.open('GET', '/queries/')
+    // http.open('GET', '/queries/?id=' + actId + '&dow=' + i + '&userId=' + userId)
+    http.setRequestHeader('Authorization', 'Bearer ' + token)
+    http.setRequestHeader('Accept', '*/*')
+    http.setRequestHeader('Content-type', 'application/json')
+    http.onreadystatechange = function () {
+        if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
+            var consultas = JSON.parse(http.responseText);
+            console.log("🚀 ~ file: consultas.js ~ line 17 ~ actividades ~ consultas", consultas)
+            console.log("2163546")
+            var queryStr = "";
+            for (const consul of consultas) {
+                queryStr = " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
+                    consul.nombre + "<br>";
+                console.log(consul.nombre)
+                for (const param in consul.parameters) {
+                    queryStr += consul.parameters[param] + "<br>";
                 }
+                queryStr += decodeURI(consul.query) + "<br>" +
+                    "</div>";
 
-                loop(i + 1, length);
+                document.getElementById('divConsultas').innerHTML += queryStr;
             }
         }
-        http.send();
-    })(0, length);
+    }
+    http.send();
 
 }
 
@@ -63,3 +60,5 @@ function reservarActividad(idAct, dow) {
         buscarMisReservas();
     }
 }
+
+actividades()
