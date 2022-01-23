@@ -21,10 +21,12 @@ exports.find_query_by_id = function (id, callback) {
 
 
 //GET - Retorna todas las queries con el nickname del creador proporcionado
-exports.find_queries_by_params = async (creator_nickname) => {
+exports.findQueriesByParams = async (creator_nickname) => {
     let queries = [];
     if (!creator_nickname) {
         queries = await Query.find(); // will return Worf and La Forge
+    } else {
+        queries = await Query.find({ 'usuario_creacion': creator_nickname })
     }
     return queries;
 };
@@ -74,12 +76,18 @@ exports.add_items_query = async (items, query) => {
                 saveItem = false;
             }
             if (await isUpdateItems(itemML, oldItemResult)) {
+                const changedItem = {
+                    ...items,
+                    oldTitulo: oldItemResult.titulo,
+                    oldPrecio: oldItemResult.precio,
+                    oldSpecificItem: oldItemResult.specific_item
+                }
                 oldItemResult.titulo = itemML?.titulo;
                 oldItemResult.precio = itemML?.precio;
                 oldItemResult.specific_item = itemML?.specific_item;
                 await oldItemResult.save();
                 // TODO notificar POR mail;
-                updateItemList.push(itemML);
+                updateItemList.push(changedItem);
             }
             return Promise.resolve()
         }, Promise.resolve());

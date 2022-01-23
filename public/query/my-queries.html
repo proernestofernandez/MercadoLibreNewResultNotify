@@ -25,7 +25,8 @@
 
   <!-- MENU de LOGIN -->
   <iframe src="/components/header.html"
-    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"
+    loading="lazy"></iframe>
 
 
   EN QUERYYYY
@@ -33,9 +34,21 @@
 
   </div>
 
+  <div id="newQuery">
+
+    Nombre:<input type="text" /> <br /><br />
+    Apellidos:<input type="text" /> <br /><br />
+    Contraseña: <input type="password" /> <br /><br />
+    casilla de verificación: <input type="checkbox" /> <br /><br />
+    casilla de selección: <input type="radio" /> <br /><br />
+    selección de archivo: <input type="file"> <br /><br />
+    botón de envio: <input type="submit">
+  </div>
+
   <!-- FOOTER -->
   <iframe src="/components/footer.html"
-    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"
+    loading="lazy"></iframe>
 
 
   <script src="/js/jquery-3.3.1.min.js"></script>

@@ -18,7 +18,8 @@ router.get('/:id', authService.ensureAuthenticated, async (req, res, next) => {
 // Obtener queries por nickname de creador
 router.get('', authService.ensureAuthenticated, async (req, res, next) => {
     const creator_nickname = req.query.creator_nickname
-    const queries = await queries_service.find_queries_by_params(creator_nickname);
+    console.log(creator_nickname)
+    const queries = await queries_service.findQueriesByParams(creator_nickname);
     console.log(queries);
     if (queries) {
         res.status(200).send(queries);

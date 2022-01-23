@@ -1,12 +1,11 @@
 
-console.log("ACAAA")
-
-function actividades() {
+function searchQueries() {
     var token = localStorage.getItem('token');
+    var nickname = localStorage.getItem('nickname');
 
     const http = new XMLHttpRequest();
 
-    http.open('GET', '/queries/')
+    http.open('GET', '/queries/' + "creator_nickaname=" + nickname)
     // http.open('GET', '/queries/?id=' + actId + '&dow=' + i + '&userId=' + userId)
     http.setRequestHeader('Authorization', 'Bearer ' + token)
     http.setRequestHeader('Accept', '*/*')
@@ -36,9 +35,9 @@ function actividades() {
 }
 
 
-function reservarActividad(idAct, dow) {
+function addQuery(idAct, dow) {
     var token = localStorage.getItem('token');
-    var userId = localStorage.getItem('userId');
+    var nickname = localStorage.getItem('userId');
     var dowToday = new Date().getDay();
     var dowReservar = 0;
     if (dow - dowToday >= 0) {
@@ -61,4 +60,4 @@ function reservarActividad(idAct, dow) {
     }
 }
 
-actividades()
+searchQueries()
