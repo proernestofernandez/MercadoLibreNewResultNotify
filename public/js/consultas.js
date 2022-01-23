@@ -5,7 +5,7 @@ function searchQueries() {
 
     const http = new XMLHttpRequest();
 
-    http.open('GET', '/queries/' + "creator_nickaname=" + nickname)
+    http.open('GET', '/queries/' + "?creator_nickaname=" + nickname)
     // http.open('GET', '/queries/?id=' + actId + '&dow=' + i + '&userId=' + userId)
     http.setRequestHeader('Authorization', 'Bearer ' + token)
     http.setRequestHeader('Accept', '*/*')
@@ -16,17 +16,20 @@ function searchQueries() {
             console.log("🚀 ~ file: consultas.js ~ line 17 ~ actividades ~ consultas", consultas)
             console.log("2163546")
             var queryStr = "";
-            for (const consul of consultas) {
-                queryStr = " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
-                    consul.nombre + "<br>";
-                console.log(consul.nombre)
-                for (const param in consul.parameters) {
-                    queryStr += consul.parameters[param] + "<br>";
-                }
-                queryStr += decodeURI(consul.query) + "<br>" +
-                    "</div>";
+            if (consultas instanceof Array) {
+                for (const consul of consultas) {
+                    console.log("ACAAAS")
+                    queryStr = " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
+                        consul.nombre + "<br>";
+                    console.log(consul.nombre)
+                    for (const param in consul.parameters) {
+                        queryStr += consul.parameters[param] + "<br>";
+                    }
+                    queryStr += decodeURI(consul.query) + "<br>" +
+                        "</div>";
 
-                document.getElementById('divConsultas').innerHTML += queryStr;
+                    document.getElementById('divConsultas').innerHTML += queryStr;
+                }
             }
         }
     }

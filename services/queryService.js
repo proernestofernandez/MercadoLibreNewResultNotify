@@ -12,11 +12,11 @@ const emailGmail = require('../utils/emailGmail');
 
 
 //GET - Retorna un query con el id proporcionado
-exports.find_query_by_id = function (id, callback) {
-    Query.findById(id, function (err, query) {
-        if (err) callback(err);
-        callback(null, query);
-    })
+exports.find_query_by_id = async (id) => {
+    console.log("JOJOJ")
+    console.log(id)
+    const query = await Query.findById(id);
+    return query;
 };
 
 

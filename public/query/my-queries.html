@@ -24,36 +24,67 @@
 
 
   <!-- MENU de LOGIN -->
-  <iframe src="/components/header.html"
-    onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"
-    loading="lazy"></iframe>
+  <nav class="navbar navbar-expand-sm navbar-light">
+
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class='uil uil-user'></i> Notificacion de consultas</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto" style="display: none;" id="headerTabs">
+          <li class="nav-item">
+            <a href="/query/my-queries" class="nav-link"><span data-hover="Consultas">Consultas</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="/info" class="nav-link"><span data-hover="Info">Info</span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-lg-auto">
+
+          <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
+            id="botonLogin">Login</button>
+          <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
+            <div name=" form1">
+              <label class="logoutLblPos">
+                <input name="submit2" type="submit" id="submit2" value="log out" onclick="logOut()">
+              </label>
+            </div>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
 
 
-  EN QUERYYYY
+
+  <div id="newQuery">
+
+    Nombre de la consulta:<input type="text" placeholder="Mi consulta" /> <br /><br />
+    Apellidos:<input type="text" placeholder="Venta apartamento la blanqueada" /> <br /><br />
+    Tipo: <input type="radio" /> <br /><br />
+    <button>Agregar consulta</button>
+  </div>
+
   <div id="divConsultas">
 
   </div>
 
-  <div id="newQuery">
-
-    Nombre:<input type="text" /> <br /><br />
-    Apellidos:<input type="text" /> <br /><br />
-    Contraseña: <input type="password" /> <br /><br />
-    casilla de verificación: <input type="checkbox" /> <br /><br />
-    casilla de selección: <input type="radio" /> <br /><br />
-    selección de archivo: <input type="file"> <br /><br />
-    botón de envio: <input type="submit">
-  </div>
-
-  <!-- FOOTER -->
+  <!-- FOOTER
   <iframe src="/components/footer.html"
     onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"
-    loading="lazy"></iframe>
+    loading="lazy"></iframe> -->
 
 
   <script src="/js/jquery-3.3.1.min.js"></script>
   <!-- <script src="/js/inicioSesion.js"></script> -->
-  <script src="/js/consultas.js"></script>
+  <script src="../js/consultas.js"></script>
 
 
 

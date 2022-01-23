@@ -9,10 +9,12 @@ const queries_service = require('../services/queryService');
 //Obtener query por id
 router.get('/:id', authService.ensureAuthenticated, async (req, res, next) => {
     const id = req.params.id
-    queries_service.find_query_by_id(id, function (err, query) {
-        if (err) res.send(err)
+    const query = queries_service.find_query_by_id(id);
+    if (query) {
         res.status(200).send(query);
-    })
+    } else {
+        res.send("No se pudo obtener la consulta")
+    }
 });
 
 // Obtener queries por nickname de creador
