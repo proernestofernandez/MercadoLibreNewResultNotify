@@ -77,7 +77,7 @@ exports.add_items_query = async (items, query) => {
             }
             if (await isUpdateItems(itemML, oldItemResult)) {
                 const changedItem = {
-                    ...items,
+                    ...itemML,
                     oldTitulo: oldItemResult.titulo,
                     oldPrecio: oldItemResult.precio,
                     oldSpecificItem: oldItemResult.specific_item
@@ -109,6 +109,7 @@ exports.add_items_query = async (items, query) => {
     if (updateItemList.length || newItemList.length) {
         console.log("Enviando mails")
         emailGmail.sendNotificationEmail(updateItemList, newItemList, query, user);
+        console.log("🚀 ~ file: queryService.js ~ line 112 ~ exports.add_items_query= ~ updateItemList", JSON.stringify(updateItemList))
     }
 };
 
