@@ -2,7 +2,7 @@
 function buscarLogs() {
 
     const http = new XMLHttpRequest()
-    http.open('GET', '/audit/')
+    http.open('GET', 'api/audit/')
     http.setRequestHeader('Accept', '*/*')
     http.setRequestHeader('Content-type', 'application/json')
     http.send()
