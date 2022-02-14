@@ -5,6 +5,10 @@ const router = express.Router();
 const authService = require('../services/authService');
 const queries_service = require('../services/queryService');
 
+//Obtener query por id
+router.get('/testAPI', async (req, res, next) => {
+    res.send([1, 2, 3, 4])
+});
 
 //Obtener query por id
 router.get('/:id', authService.ensureAuthenticated, async (req, res, next) => {
