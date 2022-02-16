@@ -1,95 +1,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untitled</title>
+<title>Naquadriah</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
 <link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/login.css">
 
 <div id="header">
 
     <div class="header-dark">
         <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-            <div class="header_logo">
-                <img id="headerLogoImg" src="/images/logoSinFondo.png" />
+            <div class="header_logo" style="display:flex;align-items: center;">
+                <a href="/">
+                    <img id="headerLogoImg" src="/images/logoSinFondo.png" />
+                </a>
+                <a href="/" class="navbar-brand">
+                    <p style="padding-left: 15px;" id="companyName"> Naquadriah Software</p>
+                </a>
             </div>
-            <div class="container"><a class="navbar-brand" href="#">
-                    <p id="companyName"> Naquadriah Software</p>
-                </a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
+            <div class="container">
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
                         class="sr-only">Toggle
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Link</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sobre nosotros</a></li>
                         <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false" href="#">Dropdown </a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
-                                    href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second
-                                    Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                aria-expanded="false" href="#">Proyectos </a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" role="presentation" href="/notificationApp">NotificationApp</a>
+                                <a class="dropdown-item" role="presentation" href="#">MinimumCircuitLength</a>
+                            </div>
                         </li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Contacto</a></li>
                     </ul>
-                    <form class="form-inline mr-auto" target="_self">
-                        <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
-                                class="form-control search-field" type="search" name="search" id="search-field">
-                        </div>
-                    </form><span class="navbar-text"><a href="#" class="login">Log In</a></span><a
-                        class="btn btn-light action-button" role="button" href="#">Sign Up</a>
+                    <a id="botonLogin" class="btn btn-light action-button" role="button"
+                        onclick="document.getElementById('id01').style.display='block'">Ingresar</a>
+                    <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
+                        <label class="logoutLblPos">
+                            <input name="submit2" type="submit" id="botonLogout" value="Salir"
+                                class="btn btn-light action-button" onclick="logOut()">
+                        </label>
                 </div>
             </div>
         </nav>
 
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-
-
-
-<!-- <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<nav class="navbar navbar-expand-sm navbar-light">
-
-
-    <div class="container">
-        <a class="navbar-brand" href="/"><i class='uil uil-user'></i> Notificacion de consultas</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto" style="display: none;" id="headerTabs">
-                <li class="nav-item">
-                    <a href="/queries" class="nav-link"><span data-hover="Consultas">Consultas</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/info" class="nav-link"><span data-hover="Info">Info</span></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-lg-auto">
-
-                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
-                    id="botonLogin">Login</button>
-                <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
-                    <div name=" form1">
-                        <label class="logoutLblPos">
-                            <input name="submit2" type="submit" id="submit2" value="log out" onclick="logOut()">
-                        </label>
-                    </div>
-
-            </ul>
-
-        </div>
-    </div>
-</nav>
 
 <div id="id01" class="modal" style="display:none;">
 
@@ -116,104 +75,6 @@
     </div>
 </div>
 
-
-<script>
-    // Get the modal
-    var modal = document.getElementById('id01');
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    function iniciarSesion() {
-        modal = document.getElementById('id01')
-
-        let params = JSON.stringify({
-            username: document.getElementById('nameInput').value,
-            password: document.getElementById('passwordInput').value,
-        });
-
-        const http = new XMLHttpRequest()
-        http.open('POST', 'api/auth/login')
-        // http.setRequestHeader('Authorization', 'Bearer 288abceb-0a1a-4095-9f79-89d57d4c0ba9')
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.send(params) // Make sure to stringify
-        http.onload = function () {
-            if (http.status === 200) {
-                let token = JSON.parse(http.responseText).token;
-                let nickname = JSON.parse(http.responseText).nickname;
-                let email = JSON.parse(http.responseText).email;
-                let firstname = JSON.parse(http.responseText).firstName;
-                let lastName = JSON.parse(http.responseText).lastName;
-
-                localStorage.setItem('token', token);
-                localStorage.setItem('nickname', nickname);
-                localStorage.setItem('email', email);
-                localStorage.setItem('name', firstname);
-                localStorage.setItem('lastName', lastName);
-                document.getElementById('validCredential').style.display = "None";
-                modal.style.display = "none";
-                procesarInicioSesion();
-                // buscarCategorias();
-                // buscarMisReservas()
-            } else {
-                document.getElementById('validCredential').style.display = "Block";
-                document.getElementById('validCredentialLastname').style.display = "None";
-            }
-
-        }
-    }
-
-    function logOut() {
-        var token = localStorage.getItem('token');
-        var email = localStorage.getItem('email');
-
-        let params = JSON.stringify({
-            email: email,
-        });
-
-        const http = new XMLHttpRequest()
-        http.open('POST', 'api/auth/logout')
-        http.setRequestHeader('Authorization', 'Bearer ' + token)
-        http.setRequestHeader('Accept', '*/*')
-        http.setRequestHeader('Content-type', 'application/json')
-        http.send(params) // Make sure to stringify
-        http.onload = function () {
-            console.log("DEBERIA DESLOGUEAR")
-            if (http.status === 200) {
-                console.log("DIO 2020")
-                localStorage.removeItem('token');
-                localStorage.removeItem('nickname');
-                localStorage.removeItem('email');
-                localStorage.removeItem('name');
-                localStorage.removeItem('lastName');
-                procesarInicioSesion();
-            } else {
-                console.log("No pudo desloguear")
-            }
-
-        }
-    }
-
-    function procesarInicioSesion() {
-        var nickname = localStorage.getItem('nickname');
-        if (nickname && nickname != 'undefined') {
-            if (document.getElementById('msgNombreLogueado')) {
-                document.getElementById('msgNombreLogueado').innerHTML = nickname;
-                document.getElementById('msgNombreLogueado').style.display = "Block";
-            }
-            if (document.getElementById('msgNombreLogueado')) {
-                document.getElementById('headerTabs').style.display = "Flex";
-                document.getElementById('botonLogin').style.display = "None";
-            }
-        }
-        window.locationf = "/index.html";
-    }
-
-    procesarInicioSesion();
-
-</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/layout/authentication.js"></script>

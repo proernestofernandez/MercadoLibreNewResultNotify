@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
     res.render('homepage')
 });
 
-router.get('/queries', (req, res) => {
-    res.render('queries')
+router.get('/notificationApp', (req, res) => {
+    res.render('notificationApp')
 });
 
 router.get('/info', (req, res) => {
