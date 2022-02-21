@@ -70,6 +70,9 @@ exports.logout = async function (req, res, next) {
   }
 }
 
+exports.isActiveSession = async function (req, res, next) {
+  res.status(200).send("Sesión activa.");
+}
 
 exports.ensureAuthenticated = async (req, res, next) => {
   if (!req.headers.authorization) {

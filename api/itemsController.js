@@ -16,12 +16,15 @@ router.get('/:id', authService.ensureAuthenticated, async (req, res, next) => {
 
 // Obtener items por parametros
 router.get('', authService.ensureAuthenticated, async (req, res, next) => {
-    const query_id = req.query.query_id
+    const query_id = req.query.query
+    console.log("🚀 ~ file: itemsController.js ~ line 20 ~ router.get ~ query_id", query_id)
     //Unicamente por nickname_query_creator
-    items_service.find_items_by_params(query_id, function (err, user) {
-        if (err) res.send(err)
-        res.status(200).send(user);
-    })
+    const itemList = await items_service.findItemsByParams(query_id)
+    if (itemList) {
+        res.status(200).send(itemList);
+    } else {
+        res.send("No se pudo obtener los items")
+    }
 });
 
 //Crear item

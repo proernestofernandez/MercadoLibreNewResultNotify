@@ -18,10 +18,9 @@ function iniciarSesion() {
 
     const http = new XMLHttpRequest()
     http.open('POST', 'api/auth/login')
-    // http.setRequestHeader('Authorization', 'Bearer 288abceb-0a1a-4095-9f79-89d57d4c0ba9')
     http.setRequestHeader('Accept', '*/*')
     http.setRequestHeader('Content-type', 'application/json')
-    http.send(params) // Make sure to stringify
+    http.send(params)
     http.onload = function () {
         if (http.status === 200) {
             let token = JSON.parse(http.responseText).token;
@@ -61,50 +60,70 @@ function logOut() {
     http.setRequestHeader('Authorization', 'Bearer ' + token)
     http.setRequestHeader('Accept', '*/*')
     http.setRequestHeader('Content-type', 'application/json')
-    http.send(params) // Make sure to stringify
+    http.send(params)
     http.onload = function () {
-        console.log("DEBERIA DESLOGUEAR")
         if (http.status === 200) {
-            console.log("DIO 2020")
-            localStorage.removeItem('token');
-            localStorage.removeItem('nickname');
-            localStorage.removeItem('email');
-            localStorage.removeItem('name');
-            localStorage.removeItem('lastName');
             procesarInicioSesion();
         } else {
             console.log("No pudo desloguear")
         }
-
     }
 }
 
 function procesarInicioSesion() {
     var nickname = localStorage.getItem('nickname');
-    if (nickname && nickname != 'undefined') {
-        if (document.getElementById('msgNombreLogueado')) {
-            document.getElementById('msgNombreLogueado').innerHTML = nickname;
-            document.getElementById('msgNombreLogueado').style.display = "Block";
-        }
-        if (document.getElementById('botonLogin')) {
-            document.getElementById('botonLogin').style.display = "None";
-        }
-        if (document.getElementById('botonLogout')) {
-            document.getElementById('botonLogout').style.display = "Flex";
+    var token = localStorage.getItem('token');
+    if (nickname && nickname !== 'undefined' && token && token !== 'undefined') {
+        console.log("WOOW");
+        const http = new XMLHttpRequest()
+        http.open('GET', 'api/auth/isActiveSession')
+        http.setRequestHeader('Authorization', 'Bearer ' + token)
+        http.setRequestHeader('Accept', '*/*')
+        http.setRequestHeader('Content-type', 'application/json')
+        http.send()
+        http.onload = function () {
+            if (http.status === 200) {
+                mostrarSesion()
+            } else {
+                ocultarSesion()
+            }
         }
     } else {
-        if (document.getElementById('msgNombreLogueado')) {
-            document.getElementById('msgNombreLogueado').style.display = "None";
-        }
-        if (document.getElementById('botonLogin')) {
-            document.getElementById('botonLogin').style.display = "Block";
-        }
-        if (document.getElementById('botonLogout')) {
-            document.getElementById('botonLogout').style.display = "None";
-        }
+        ocultarSesion()
 
     }
-    window.locationf = "/index.html";
 }
+
+
+function mostrarSesion() {
+    if (document.getElementById('msgNombreLogueado')) {
+        document.getElementById('msgNombreLogueado').innerHTML = localStorage.getItem('nickname');;
+        document.getElementById('msgNombreLogueado').style.display = "Block";
+    }
+    if (document.getElementById('botonLogin')) {
+        document.getElementById('botonLogin').style.display = "None";
+    }
+    if (document.getElementById('botonLogout')) {
+        document.getElementById('botonLogout').style.display = "Flex";
+    }
+}
+
+function ocultarSesion() {
+    if (document.getElementById('msgNombreLogueado')) {
+        document.getElementById('msgNombreLogueado').style.display = "None";
+    }
+    if (document.getElementById('botonLogin')) {
+        document.getElementById('botonLogin').style.display = "Block";
+    }
+    if (document.getElementById('botonLogout')) {
+        document.getElementById('botonLogout').style.display = "None";
+    }
+    localStorage.removeItem('token');
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('email');
+    localStorage.removeItem('name');
+    localStorage.removeItem('lastName');
+}
+
 
 procesarInicioSesion();
