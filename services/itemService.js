@@ -15,7 +15,7 @@ exports.find_item_by_id = function (id, callback) {
 
 
 //GET - Retorna items con el el query id proporcionado
-exports.findItemsByParams = function (query_id) {
+exports.findItemsByParams = async function (query_id) {
 
     let items = [];
     if (!query_id) {
