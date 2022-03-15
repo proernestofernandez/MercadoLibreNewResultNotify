@@ -124,6 +124,12 @@ body {
     justify-content: center;
 }
 
+.imgProyecto{
+    max-width: 300px;
+    max-height: 500px;
+    border-radius: 15px;
+}
+
 @media (min-width: 600px) {
     .bloqueQuienesSomos{
         padding-top: 5%;
