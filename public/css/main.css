@@ -106,6 +106,24 @@ body {
     justify-content: center;
 }
 
+.tituloProyectos{
+    font-family: 'Blanka' !important;
+    font-size: xx-large;
+    /* background-color: #01010157; */
+}
+
+.bloqueProyectos{
+    color: white;
+    font-family: 'Blanka' !important;
+    text-align: center;
+}
+.listaProyectos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 @media (min-width: 600px) {
     .bloqueQuienesSomos{
         padding-top: 5%;
