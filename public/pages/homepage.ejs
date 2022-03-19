@@ -44,8 +44,8 @@
       </p>
     </div>
 
-    <div id="proyectos" class="bloqueHome">
-      <p class="tituloHome">Proyectos</p>
+    <div class="bloqueHome">
+      <p id="proyectos" class="tituloHome">Proyectos</p>
 
       <div class="listaProyectos">
 
@@ -68,8 +68,8 @@
       </div>
     </div>
 
-    <div id="equipo" class="bloqueHome">
-      <p class="tituloHome">Equipo</p>
+    <div class="bloqueHome">
+      <p id="equipo" class="tituloHome">Equipo</p>
 
       <div class="listaEquipo">
         <div class="integrante">
@@ -85,38 +85,38 @@
       </div>
     </div>
 
-    <div id="contacto" class="bloqueHome">
-      <p class="tituloHome">Contacto</p>
+    <div class="bloqueHome">
+      <p id="contacto" class="tituloHome">Contacto</p>
       <div class="containerContacto">
 
         <form class="contact100-form validate-form">
           <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Nombre requerido">
             <span class="label-input100">Nombre</span>
-            <input class="input100" type="text" name="name" placeholder="Ingresa tu nombre">
+            <input id="nameField" class="input100" type="text" name="name" placeholder="Ingresa tu nombre">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Apellido es requerido">
             <span class="label-input100">Apellido</span>
-            <input class="input100" type="text" name="name" placeholder="Ingresa tu apellido">
+            <input id="lastNameField" class="input100" type="text" name="name" placeholder="Ingresa tu apellido">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Email es requerido">
             <span class="label-input100">Nombre proyecto</span>
-            <input class="input100" type="text" name="name" placeholder="Ingresa tu email">
+            <input id="proyNameField" class="input100" type="text" name="name" placeholder="Ingresa tu email">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Email válido es requerido: yo@miempresa.com">
             <span class="label-input100">Email</span>
-            <input class="input100" type="text" name="email" placeholder="Ingresa tu email">
+            <input id="emailField" class="input100" type="text" name="email" placeholder="Ingresa tu email">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Mensaje es requerido">
             <span class="label-input100">Mensaje</span>
-            <textarea class="input100" name="message" placeholder="Tu mensaje aquí..."></textarea>
+            <textarea id="msgField" class="input100" name="message" placeholder="Tu mensaje aquí..."></textarea>
             <span class="focus-input100"></span>
           </div>
 
@@ -135,6 +135,16 @@
         </span>
       </div>
 
+    </div>
+
+
+    <div id="id02" class="email-modal" style="display:none;">
+      <div class="email-modal-content animate">
+        <label">
+          <span style="color: chartreuse;">&#10004;</span>
+          <b>Se ha enviado el contacto correctamente.</b>
+          </label>
+      </div>
     </div>
 
     <!-- FOOTER -->

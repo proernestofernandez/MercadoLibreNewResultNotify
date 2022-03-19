@@ -12,13 +12,9 @@ $('.validate-form').on('submit', function () {
         }
     }
     if (check) {
-        console.log("CHEQUEADO")
-    } else {
-        console.log("NO CHEQUEADO")
-
+        sendContact()
     }
-
-    return check;
+    return false;
 });
 
 
@@ -51,4 +47,35 @@ function hideValidate(input) {
     var thisAlert = $(input).parent();
 
     $(thisAlert).removeClass('alert-validate');
+}
+
+function sendContact() {
+    const name = document.getElementById('nameField').value
+    const lastName = document.getElementById('lastNameField').value
+    const proyName = document.getElementById('proyNameField').value
+    const email = document.getElementById('emailField').value
+    const msg = document.getElementById('msgField').value
+
+    let params = "{\"name\":\"" + name + "\", " +
+        "\"lastName\":\"" + lastName + "\", " +
+        "\"proyName\":\"" + proyName + "\", " +
+        "\"email\":\"" + email + "\", " +
+        "\"msg\":\"" + msg + "\"}";
+    const http = new XMLHttpRequest()
+    http.open('POST', 'api/web/contacto')
+    http.setRequestHeader('Accept', '*/*')
+    http.setRequestHeader('Content-type', 'application/json')
+    http.send(params) // Make sure to stringify
+    http.onload = function () {
+        document.getElementById('id02').style.display = 'block'
+        setTimeout(function () {
+            console.log("Listo tras 3 segundo.");
+            document.getElementById('id02').style.display = 'none'
+        }, 3000);
+        document.getElementById('nameField').value = "";
+        document.getElementById('lastNameField').value = "";
+        document.getElementById('proyNameField').value = "";
+        document.getElementById('emailField').value = "";
+        document.getElementById('msgField').value = "";
+    }
 }
