@@ -64,3 +64,47 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
   })
 };
 
+//GET - Retorna un query con el id proporcionado
+exports.sendContactEmail = async (form) => {
+
+  html = "";
+
+
+  html += " CONTACTO WEB: <br>";
+
+  html = html + "Nombre: " + form.name + "<br>"
+  html = html + "Apellido: " + form.lastName + "<br>"
+  html = html + "Nombre de proyecto: " + form.proyName + "<br>"
+  html = html + "Email: " + form.email + "<br>"
+  html = html + "Mensaje: " + form.msg + "<br>"
+
+  let transport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD
+    }
+  });
+
+  message = {
+    to: process.env.ADMIN_MAIL_USER,
+    subject: "Contacto web ",
+    // text: "Hello SMTP Email"
+    html: html
+  }
+
+  transport.sendMail(message, function (err, info) {
+    if (err) {
+      console.log("MAL")
+      console.log(err)
+      return err
+    } else {
+      console.log(info);
+      console.log("OK")
+      return info
+    }
+  })
+};
+
