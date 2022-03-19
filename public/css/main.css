@@ -66,16 +66,10 @@ body {
 
 }
 
-.tituloQuienesSomos{
+.tituloHome{
     font-family: 'Blanka' !important;
     font-size: xx-large;
     /* background-color: #01010157; */
-}
-
-.bloqueQuienesSomos{
-    color: white;
-    font-family: 'Blanka' !important;
-    text-align: center;
 }
 
 .imgIntegrante{
@@ -88,16 +82,13 @@ body {
     margin-right: 50px;
 }
 
-.tituloEquipo{
-    font-family: 'Blanka' !important;
-    font-size: xx-large;
-    /* background-color: #01010157; */
-}
 
-.bloqueEquipo{
+.bloqueHome{
     color: white;
     font-family: 'Blanka' !important;
     text-align: center;
+    justify-content: center;
+    padding-top: 150px;
 }
 .listaEquipo{
     width: 100%;
@@ -106,17 +97,6 @@ body {
     justify-content: center;
 }
 
-.tituloProyectos{
-    font-family: 'Blanka' !important;
-    font-size: xx-large;
-    /* background-color: #01010157; */
-}
-
-.bloqueProyectos{
-    color: white;
-    font-family: 'Blanka' !important;
-    text-align: center;
-}
 .listaProyectos{
     width: 100%;
     display: flex;
@@ -128,6 +108,16 @@ body {
     max-width: 300px;
     max-height: 500px;
     border-radius: 15px;
+}
+
+.proyecto{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.linkProyecto{
+    color: white !important;
+    text-decoration: none !important;
 }
 
 @media (min-width: 600px) {
