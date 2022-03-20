@@ -11,56 +11,67 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/homepage.css">
+
 
 </head>
 
 <body>
-  <% include ../layouts/headerHomepage %>
+  <% include ../layouts/headerNotificationApp %>
 
+    <div class="bloqueQuienesSomos bloqueHome">
+      <p id="agregarConsultas" class="tituloHome">NotificationApp</p>
 
-    <h1>
-      <p style="color: white;">
-        NotificationApp
-      </p>
-    </h1>
-
-    <div class="bloqueConsultas">
-      <div id="newQuery">
-
-        Nombre de la consulta:<input type="text" placeholder="Mi consulta" /> <br /><br />
-        Apellidos:<input type="text" placeholder="Venta apartamento la blanqueada" /> <br /><br />
-        Tipo: <input type="radio" /> <br /><br />
-        <button>Agregar consulta</button>
-      </div>
-    </div>
-
-    <!-- ACTIVIDADES -->
-
-    <section class="about d-lg-flex justify-content-center align-items-center" id="actividades"
-      style="margin-top: 100px;">
-      <div class="container" id="divCategorias">
-        <h1 id="msgNoLogueado">Debes estar logueado para ver las actividades</h1>
-        <div class="col-lg-8 mx-auto" style="display: none;" id="actTitulo">
-          <h2>Actividades</h2>
+      <div class="bloqueConsultas">
+        <div id="newQuery">
+          <div class="wrap-input100 validate-input" data-validate="Nombre de consulta válida requerida">
+            <span class="label-input100">Nombre de la consulta</span>
+            <input id="queryNameField" class="input100" type="text" name="email" placeholder="ej: Ford Fiesta 2009">
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate="Consulta válida requerida">
+            <span class="label-input100">Consulta</span>
+            <input id="queryField" class="input100" type="text" name="query" placeholder="ej: venta ford fiesta 2009">
+            <span class="focus-input100"></span>
+          </div>
+          <div class=" ">
+            <span class="label-input100">Tipo busqueda</span>
+            <br>
+            <input type="radio" id="carRadio" name="typeRadio" value="Coches"> <label for="Coches"
+              style="font-family: Poppins-SemiBold">Coches</label>
+            </input>
+            <input type="radio" id="houseRadio" name="typeRadio" value="Inmbuebles"> <label for="Inmbuebles"
+              style="font-family: Poppins-SemiBold">Inmbuebles</label>
+            </input>
+            <input type="radio" id="otherRadio" name="typeRadio" value="Otros" checked> <label for="Otros"
+              style="font-family: Poppins-SemiBold">Otros</label>
+            </input>
+          </div>
+          <div style="text-align:right ">
+            <button class="contact100-form-btn" style="display: revert;">
+              <span>
+                Agregar consulta
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
-    </section>
 
+      <div class="bloqueMisConsultas bloqueHome">
+        <p id="misConsultas" class="tituloHome">Mis consultas</p>
+      </div>
+      <div id="divConsultas">
 
-    <div id="newQuery">
-
-      Nombre de la consulta:<input type="text" placeholder="Mi consulta" /> <br /><br />
-      Apellidos:<input type="text" placeholder="Venta apartamento la blanqueada" /> <br /><br />
-      Tipo: <input type="radio" /> <br /><br />
-      <button>Agregar consulta</button>
+      </div>
     </div>
 
-    <div id="divConsultas">
 
-    </div>
 
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="../js/queries.js"></script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/layout/contact.js"></script>
+    <script src="js/notificationApp.js"></script>
 
     <!-- FOOTER -->
     <% include ../layouts/footer %>

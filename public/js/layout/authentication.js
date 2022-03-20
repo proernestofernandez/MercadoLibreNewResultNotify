@@ -1,5 +1,5 @@
 // Get the modal
-var modal = document.getElementById('id01');
+var modal = document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -9,11 +9,11 @@ window.onclick = function (event) {
 }
 
 function iniciarSesion() {
-    modal = document.getElementById('id01')
+    modal = document.getElementById('id02')
 
     let params = JSON.stringify({
-        username: document.getElementById('nameInput').value,
-        password: document.getElementById('passwordInput').value,
+        username: document.getElementById('nameLoginField').value,
+        password: document.getElementById('passLoginField').value,
     });
 
     const http = new XMLHttpRequest()
@@ -83,7 +83,8 @@ function procesarInicioSesion() {
         http.send()
         http.onload = function () {
             if (http.status === 200) {
-                mostrarSesion()
+                mostrarSesion();
+                searchQueries();
             } else {
                 ocultarSesion()
             }

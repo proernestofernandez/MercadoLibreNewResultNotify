@@ -1,7 +1,12 @@
+console.log("SHAIDHASI UA")
+
 function searchQueries() {
     var token = localStorage.getItem('token');
+    console.log("🚀 ~ file: earlyBookingApp.js ~ line 5 ~ searchQueries ~ token", token)
     var nickname = localStorage.getItem('nickname');
+    console.log("🚀 ~ file: earlyBookingApp.js ~ line 7 ~ searchQueries ~ nickname", nickname)
     var userId = localStorage.getItem('userId');
+    console.log("🚀 ~ file: earlyBookingApp.js ~ line 9 ~ searchQueries ~ userId", userId)
 
     if (token) {
 
@@ -18,15 +23,34 @@ function searchQueries() {
             // Do whatever with response
             for (const query of queriesList) {
 
-                var divActividades = document.getElementById('divCategorias').innerHTML +=
+                var divActividades = document.getElementById('divConsultas').innerHTML +=
                     "<button class='accordion' onclick='actividades(\"" + query._id + "\")'>" + query.nombre + " | " + query.momento_creacion + "</button>" +
                     "<div class='panel' id='panel" + "'>" +
                     "</div>";
             }
-            accordionAcordion();
+            // accordionAcordion();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function addQuery(idAct, dow) {
@@ -55,26 +79,6 @@ function addQuery(idAct, dow) {
 }
 
 
-function accordionAcordion() {
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            /* Toggle between adding and removing the "active" class,
-            to highlight the button that controls the panel */
-            this.classList.toggle("active");
-
-            /* Toggle between hiding and showing the active panel */
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        });
-    }
-}
 
 function searchItems(queryId) {
     var token = localStorage.getItem('token');
