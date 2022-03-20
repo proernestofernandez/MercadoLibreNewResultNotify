@@ -22,6 +22,10 @@ router.get('/notificationApp', (req, res) => {
     res.render('notificationApp')
 });
 
+router.get('/earlyBookingApp', (req, res) => {
+    res.render('earlyBookingApp')
+});
+
 router.get('/info', (req, res) => {
     res.render('info')
 });
