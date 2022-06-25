@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="css/unicons.css">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/acordion.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
 
   <!-- MAIN STYLE -->
   <link rel="stylesheet" href="css/tooplate-style.css">
@@ -20,62 +24,25 @@
 
 </head>
 
-<body>
+<!-- position: absolute; top: 30%;left: 0;right: 0;margin: 0 auto; -->
+
+<body style="background-color: #15155e;">
 
   <% include ../layouts/headerEarlyBooking %>
 
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> Nacional Club Social</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a href="#actividades" class="nav-link"><span data-hover="Actividades">Actividades</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#reservas" class="nav-link"><span data-hover="Reservas">Reservas</span></a>
-            </li>
-          </ul>
-
-          <ul class="navbar-nav ml-lg-auto">
-
-            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"
-              id="botonLogin">Login</button>
-            <h3 id="msgNombreLogueado" style="display:none;">Nombre</h1>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-    <!-- LOGIN -->
-
-    <div id="id01" class="modal">
-
-      <div class="modal-content animate">
-        <div class="imgcontainer">
-          <span onclick="document.getElementById('id01').style.display='none'" class="close"
-            title="Close Modal">&times;</span>
-          <img src="images/NacClubSocial.png" alt="Avatar" class="avatar">
-        </div>
-
+    <div style="background-image: url('../images/NacionalCS.png');
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-block-color: rgb(212, 71, 71);">
+      <div id="loginContainer" style="padding: 10%;">
         <div class="container">
           <label for="uname"><b>Username</b></label>
           <input type="text" id="nameLoginField" placeholder="Enter Username" name="uname" required>
 
           <label for="psw"><b>Password</b></label>
           <input type="password" id="passLoginField" placeholder="Enter Password" name="psw" required>
-          <label id="validCredential" style="color: red; display: none;"><b>Usuario/contraseña incorrectas.</b></label>
+          <label id="validCredential" style="color: red; display: none;"><b>Usuario/contraseña
+              incorrectas.</b></label>
           <label id="validCredentialLastname" style="color: red; display: none;"><b>Su usuario no está habilitado para
               usar esta web.</b></label>
 
@@ -84,15 +51,28 @@
       </div>
     </div>
 
-
     <!-- ACTIVIDADES -->
 
     <section class="about d-lg-flex justify-content-center align-items-center" id="actividades"
       style="margin-top: 100px;">
-      <div class="container" id="divCategorias">
-        <h1 id="msgNoLogueado">Debes estar logueado para ver las actividades</h1>
-        <div class="col-lg-8 mx-auto" style="display: none;" id="actTitulo">
-          <h2>Actividades</h2>
+      <div class="container">
+
+        <div class="row">
+          <div class="mx-auto col-12">
+
+            <div class="col-lg-8 mx-auto" style="max-width: 100% !important;">
+              <h2 id="actividadesLabel" style="color: white;text-align: center;">Actividades</h2>
+
+
+              <div class="container" id="divCategorias">
+                <div class="col-lg-8 mx-auto" style="display: none;" id="actTitulo">
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
         </div>
       </div>
     </section>
@@ -104,8 +84,8 @@
         <div class="row">
           <div class="col-lg-11 text-center mx-auto col-12">
 
-            <div class="col-lg-8 mx-auto">
-              <h2>Mis reservas</h2>
+            <div class="col-lg-8 mx-auto" style="max-width: 100% !important;">
+              <h2 style="color: white;">Mis reservas</h2>
               <div id="misReservas">
 
               </div>
@@ -117,6 +97,8 @@
         </div>
       </div>
     </section>
+
+
 
     <!-- FOOTER -->
     <footer class="footer py-5">
@@ -151,11 +133,25 @@
 
       function procesarInicioSesion() {
         var userName = localStorage.getItem('userName');
-        if (userName && userName != 'undefined') {
-          document.getElementById('msgNombreLogueado').innerHTML = userName;
-          document.getElementById('msgNombreLogueado').style.display = "Block";
-          document.getElementById('botonLogin').style.display = "None";
-          document.getElementById('actTitulo').style.display = "Block";
+        if (userName) {
+          document.getElementById('msgNombreLogueadoEarlyHeader').innerHTML = userName;
+          document.getElementById('msgNombreLogueadoEarlyHeader').style.display = "Block";
+          document.getElementById('loginContainer').style.display = "None";
+          document.getElementById('closeSesionButton').style.display = "Block";
+          document.getElementById('reservas').style.display = "Block";
+          document.getElementById('actividades').setAttribute('style', "margin-top: 100px;display: Block !important");
+
+          // document.getElementById('actividadesLabel').style.display = "Block";
+
+          buscarCategorias();
+          buscarMisReservas()
+        } else {
+          document.getElementById('closeSesionButton').style.display = "None";
+          document.getElementById('msgNombreLogueadoEarlyHeader').style.display = "None";
+          document.getElementById('loginContainer').style.display = "Block";
+          document.getElementById('reservas').style.display = "None";
+          document.getElementById('actividades').setAttribute('style', "margin-top: 100px;display: None !important");
+          // document.getElementById('actividadesLabel').style.display = "None";
         }
       }
 
@@ -178,37 +174,38 @@
           if (http.status === 200) {
             let token = JSON.parse(http.responseText).token;
             let userId = JSON.parse(http.responseText).description.id;
-            let userName = JSON.parse(http.responseText).description.firstName;
-            let lastName = JSON.parse(http.responseText).description.lastName;
-            if (lastName.includes("ndez") || lastName.includes("al")) {
-              localStorage.setItem('token', token);
-              localStorage.setItem('userId', userId);
-              localStorage.setItem('userName', userName);
-              document.getElementById('validCredential').style.display = "None";
-              modal.style.display = "none";
-              procesarInicioSesion();
-              buscarCategorias();
-              buscarMisReservas()
-            } else {
-              document.getElementById('validCredentialLastname').style.display = "Block";
-              document.getElementById('validCredential').style.display = "None";
-            }
+            let userName = JSON.parse(http.responseText).description.firstName + ' ' + JSON.parse(http.responseText).description.lastName;
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('userName', userName);
+            document.getElementById('validCredential').style.display = "None";
+            procesarInicioSesion();
+            buscarCategorias();
+            buscarMisReservas()
           } else {
             document.getElementById('validCredential').style.display = "Block";
             document.getElementById('validCredentialLastname').style.display = "None";
-
           }
+          procesarInicioSesion()
         }
+      }
 
+      function cerrarSesion() {
+        document.getElementById('nameLoginField').value = '';
+        document.getElementById('passLoginField').value = '';
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+
+        procesarInicioSesion();
       }
 
 
       function buscarCategorias() {
-        var token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
         if (token) {
-          document.getElementById('msgNoLogueado').style.display = "None";
-
-          var userId = localStorage.getItem('userId');
+          let userId = localStorage.getItem('userId');
 
           const http = new XMLHttpRequest()
           http.open('GET', 'https://api-agenda.nacionalclubsocial.uy/activitycategory')
@@ -217,12 +214,10 @@
           http.setRequestHeader('Content-type', 'application/json')
           http.send()
           http.onload = function () {
-
             let listaCategorias = JSON.parse(http.responseText).description;
             // Do whatever with response
             for (const cat of listaCategorias) {
-
-              var divActividades = document.getElementById('divCategorias').innerHTML +=
+              let divActividades = document.getElementById('divCategorias').innerHTML +=
                 "<button class='accordion' onclick='actividades(\"" + cat.id + "\")'>" + cat.name + "</button>" +
                 "<div class='panel' id='panel" + cat.id + "'>" +
                 "</div>";
@@ -255,7 +250,7 @@
                 divPanel = document.getElementById('panel' + actId).innerHTML +=
                   " <div style='display: flex; width: 100%;border-bottom: solid;padding-top: 10px;'> " +
                   " <div  style='width: 70%'> " +
-                  "<p>Dia " + act.dayoftheweek + "  -  " + act.name + "  Inicio:" + act.starttime + "  Fin:" + act.endtime + "</p>" +
+                  "<p>" + diaDeLaActividad(act.dayoftheweek) + "  -  " + act.name + " | " + act.starttime + "-" + act.endtime + "</p>" +
                   "</div>" +
                   " <div  style='width: 30%; text-align: right'> " +
                   "<button style='width: fit-content;margin:0px;padding:5px' onclick='reservarActividad(" + act.id + "," + act.dayoftheweek + ")'>Reservar</button>" +
@@ -271,17 +266,40 @@
 
       }
 
-
-      function reservarActividad(idAct, dow) {
-        var token = localStorage.getItem('token');
-        var userId = localStorage.getItem('userId');
-        var dowToday = new Date().getDay();
+      function diasFaltantes(dow) {
         var dowReservar = 0;
+        var dowToday = new Date().getDay();
+
         if (dow - dowToday >= 0) {
           dowReservar = dow - dowToday;
         } else {
           dowReservar = 7 + (dow - dowToday);
         }
+
+        return dowReservar;
+      }
+
+      function diaDeLaActividad(dow) {
+        let diaDeActividad = '';
+        switch (dow) {
+          case 1: diaDeActividad = 'Lunes '; break;
+          case 2: diaDeActividad = 'Martes '; break;
+          case 3: diaDeActividad = 'Miercoles '; break;
+          case 4: diaDeActividad = 'Jueves '; break;
+          case 5: diaDeActividad = 'Viernes '; break;
+          case 7: diaDeActividad = 'Sabado '; break;
+          default: diaDeActividad = 'Domingo '; break;
+        }
+        var actDay = new Date();
+        actDay.setDate(actDay.getDate() + dow)
+        return diaDeActividad + actDay.getDate();
+      }
+
+      function reservarActividad(idAct, dow) {
+        var token = localStorage.getItem('token');
+        var userId = localStorage.getItem('userId');
+        var dowReservar = diasFaltantes(dow);
+
         let params = "{\"usr\":\"" + userId + "\",\"at\":\"" + idAct + "\",\"day\":\"" + dowReservar + "\",\"description\":\"\"}";
         const http = new XMLHttpRequest()
         http.open('POST', 'https://api-agenda.nacionalclubsocial.uy/reservation/')
@@ -291,9 +309,12 @@
         http.setRequestHeader('Content-type', 'text/plain')
         http.send(params) // Make sure to stringify
         http.onload = function () {
-          console.log("RESERVO");
-          alert("Se ha procesado la reserva correctamente");
-          buscarMisReservas();
+          if (http.status === 200) {
+            alert("Se ha procesado la reserva correctamente");
+            buscarMisReservas();
+          } else {
+            alert("No se ha podido procesar la reserva correctamente");
+          }
         }
       }
 
@@ -317,20 +338,35 @@
             for (const res of listaReservas) {
 
               document.getElementById('misReservas').innerHTML +=
-                "<p>Dia " + res.dayoftheweek + "  -  " + res.name + "  Inicio:" + res.starttime + "  Fin:" + res.endtime + "</p>"
+                "<p style='background-color: #7e1616; border-radius: 14px; color: white'>" + diaDeLaActividad(res.dayoftheweek)
+                + "  -  " + res.name + " | " + res.starttime + "-" + res.endtime + "hs</p>"
             }
           }
         }
       }
 
 
+      function accordionAcordion() {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function () {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
 
-
-
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+      }
 
       procesarInicioSesion();
-      buscarCategorias();
-      buscarMisReservas()
     </script>
 
 

@@ -109,7 +109,9 @@ exports.add_items_query = async (items, query) => {
     if (updateItemList.length || newItemList.length) {
         console.log("Enviando mails")
         emailGmail.sendNotificationEmail(updateItemList, newItemList, query, user);
-        console.log("🚀 ~ file: queryService.js ~ line 112 ~ exports.add_items_query= ~ updateItemList", JSON.stringify(updateItemList))
+        // console.log("🚀 ~ file: queryService.js ~ line 112 ~ exports.add_items_query= ~ updateItemList", JSON.stringify(updateItemList))
+        // console.log("🚀 ~ file: queryService.js ~ line 112 ~ exports.add_items_query= ~ newItemList", JSON.stringify(newItemList))
+        // console.log("🚀 ~ file: queryService.js ~ line 112 ~ exports.add_items_query= ~ query", JSON.stringify(query))
     }
 };
 

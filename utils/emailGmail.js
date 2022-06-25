@@ -11,6 +11,9 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
   html += " ACTUALIZACIONES: <br>";
 
   await updateItemList.reduce(async (preProm, item) => {
+    console.log("🚀 ~ file: emailGmail.js ~ line 14 ~ awaitupdateItemList.reduce ~ preProm", preProm)
+    console.log("🚀 ~ file: emailGmail.js ~ line 17 ~ awaitupdateItemList.reduce ~ item", item)
+
     await preProm;
     if (item.titulo !== item.oldTitulo) {
       html = html + item.oldTitulo + " => " + item.titulo + "<br>"

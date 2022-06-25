@@ -82,8 +82,9 @@ function addQuery(idAct, dow) {
 function accordionAcordion() {
     var acc = document.getElementsByClassName("accordion");
     var i;
-
+    console.log("estoy en acordeon")
     for (i = 0; i < acc.length; i++) {
+        console.log("dentro")
         acc[i].addEventListener("click", function () {
             /* Toggle between adding and removing the "active" class,
             to highlight the button that controls the panel */
