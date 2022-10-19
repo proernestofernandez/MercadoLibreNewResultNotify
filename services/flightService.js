@@ -7,7 +7,7 @@ const http = require('http');
 
 
 
-exports.execute_fligt_query = async (query_params) => {
+exports.execute_fligt_multiCity_query = async (query_params) => {
     
     let result = [];
     const promises = Array.from(Array(28).keys()).map(async (initOffset,index1) => {
@@ -35,6 +35,36 @@ exports.execute_fligt_query = async (query_params) => {
             result[index1*4 + index2] = flight;
         });
         await Promise.all(promises2);
+
+        console.log("TERMINO " + dateInit);
+    });
+    await Promise.all(promises)
+
+
+    result.sort(function(a, b){
+        return a.result.adultPrice - b.result.adultPrice
+    });
+
+    return result;
+};
+
+exports.execute_fligt_oneWay_query = async (query_params) => {
+    
+    let result = [];
+    const promises = Array.from(Array(28).keys()).map(async (initOffset,index1) => {
+
+        var dateInit = new Date("2023-08-14");
+            dateInit.setDate(dateInit.getDate() + initOffset);
+            dateInit = dateInit.getUTCFullYear()+'-'+String(dateInit.getUTCMonth()+1).padStart(2, '0') +'-'+String(dateInit.getUTCDate()).padStart(2, '0')
+
+            let flight_params = JSON.parse(JSON.stringify(query_params));
+            flight_params.flightSearchLegs[0].departDate = dateInit;
+            flight_params.stops = 1;
+            
+            await new Promise(r => setTimeout(r, 2000*(index1)));
+            console.log(dateInit);
+            const flight = await doQueryTocToc(flight_params);
+            result[index1] = flight;
 
         console.log("TERMINO " + dateInit);
     });
@@ -79,7 +109,8 @@ const promises = flights.map(async (flight,index) => {
         && flight.flightLegs[0].stopsQty < 3 
         && flight.flightLegs[1].stopsQty < 3 
         && flight.flightLegs[0].durationHours < 20
-        && flight.flightLegs[1].durationHours < 20 ){
+        && flight.flightLegs[1].durationHours < 20 
+        ){
         // console.log("CAMBIO "+cheapest+" por "+flight.adultPrice)
         cheapest = flight.adultPrice;
         result = {
