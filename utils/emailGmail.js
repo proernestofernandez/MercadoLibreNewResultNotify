@@ -4,6 +4,10 @@ require('dotenv').config()
 
 //GET - Retorna un query con el id proporcionado
 exports.sendNotificationEmail = async (updateItemList, newItemList, query, user) => {
+  console.log("🚀 ~ file: emailGmail.js ~ line 7 ~ exports.sendNotificationEmail= ~ user", JSON.stringify(user))
+  console.log("🚀 ~ file: emailGmail.js ~ line 7 ~ exports.sendNotificationEmail= ~ query", JSON.stringify(query))
+  console.log("🚀 ~ file: emailGmail.js ~ line 7 ~ exports.sendNotificationEmail= ~ newItemList", JSON.stringify(newItemList))
+  console.log("🚀 ~ file: emailGmail.js ~ line 7 ~ exports.sendNotificationEmail= ~ updateItemList", JSON.stringify(updateItemList))
 
   html = "";
 
@@ -12,7 +16,9 @@ exports.sendNotificationEmail = async (updateItemList, newItemList, query, user)
 
   await updateItemList.reduce(async (preProm, item) => {
     console.log("🚀 ~ file: emailGmail.js ~ line 14 ~ awaitupdateItemList.reduce ~ preProm", preProm)
+    console.log("🚀 ~ file: emailGmail.js ~ line 14 ~ awaitupdateItemList.reduce ~ preProm", JSON.stringify(preProm))
     console.log("🚀 ~ file: emailGmail.js ~ line 17 ~ awaitupdateItemList.reduce ~ item", item)
+    console.log("🚀 ~ file: emailGmail.js ~ line 17 ~ awaitupdateItemList.reduce ~ item", JSON.stringify(item))
 
     await preProm;
     if (item.titulo !== item.oldTitulo) {

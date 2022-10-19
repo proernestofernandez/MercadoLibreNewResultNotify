@@ -11,6 +11,7 @@ const itemMiddleware = require('../api/itemsController.js');
 const auditMiddleware = require('../api/auditsController.js');
 const authMiddleware = require('../api/authController.js');
 const webMiddleware = require('../api/webController.js');
+const flightMiddleware = require('../api/flightController.js');
 const pagesMiddleware = require('../api/pagesController.js');
 const port = process.env.PORT || 3000;
 
@@ -25,6 +26,7 @@ express()
     .use('/api/audit', auditMiddleware)
     .use('/api/auth', authMiddleware)
     .use('/api/web', webMiddleware)
+    .use('/api/flight', flightMiddleware)
     .use('/', pagesMiddleware)
     .set('view engine', 'ejs')
     .set('views', path.join(__dirname, '../public/pages'))
